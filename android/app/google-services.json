@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "643310975193",
+    "project_id": "goaviralnews-83e6a",
+    "storage_bucket": "goaviralnews-83e6a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:643310975193:android:1feeb43faa4106a727a6c8",
+        "android_client_info": {
+          "package_name": "com.example.goaviralnewz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "643310975193-mbfhq1688boanqnjbvdv1p1np9v7kd34.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.goaviralnewz",
+            "certificate_hash": "60c60cef4e606addfbc4a33d5ac00c63e2cff0fe"
+          }
+        },
+        {
+          "client_id": "643310975193-ivnn3ijgvoufo7q3ruqud0uhaidb2p0u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWiq9FbU5vy8SANKSb5C0XidjpFPij9FQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "643310975193-ivnn3ijgvoufo7q3ruqud0uhaidb2p0u.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "643310975193-7gkoj4j3ffgqfninfef4vp87s3hj57da.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.goaviralnews"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
