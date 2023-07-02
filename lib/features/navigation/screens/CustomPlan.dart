@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../size_config.dart';
+import 'package:custom_date_range_picker/custom_date_range_picker.dart'
+    as DateRangePicker;
 
 class CustomTravellingPlan extends StatefulWidget {
   const CustomTravellingPlan({Key? key});
@@ -14,11 +16,21 @@ class CustomTravellingPlan extends StatefulWidget {
 class _CustomTravellingPlanState extends State<CustomTravellingPlan> {
   double _visitorCount = 2;
   double _budgetRange = 1000;
+
+  String fromDateText = 'From';
+  String toDateText = 'To';
+
+  DateTimeRange _dateRange = DateTimeRange(
+    start: DateTime.now(),
+    // end: DateTime.now().add(const Duration(days: 7)),
+    end: DateTime.now(),
+  );
+
   List<String> tags = [
     'Adventure',
     'Relaxing',
     'Beaches',
-    'CLubs',
+    'Clubs',
     'Temples',
     'Waterfall',
     'Cultural Fest',
@@ -34,11 +46,53 @@ class _CustomTravellingPlanState extends State<CustomTravellingPlan> {
     'Couples',
   ];
   List<String> location = ['South Goa', 'North Goa', 'Both'];
+  List<String> selectedLocation = []; // New list for selected location
+
+  Future pickDateRange() async {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final dialogHeight = screenHeight * 0.6;
+    final dialogTopOffset = screenHeight * 0.2;
+
+    final pickedRange = await showDateRangePicker(
+      context: context,
+      firstDate: DateTime(1900),
+      lastDate: DateTime(2100),
+      initialDateRange: _dateRange,
+      initialEntryMode: DatePickerEntryMode.calendar,
+      builder: (BuildContext context, Widget? child) {
+        return Theme(
+          data: ThemeData
+              .light(), // Customize the date picker dialog theme if needed
+          child: SizedBox(
+            height: dialogHeight,
+            child: Column(
+              children: [
+                SizedBox(height: dialogTopOffset),
+                child ?? const SingleChildScrollView(),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+
+    if (pickedRange != null) {
+      setState(() {
+        _dateRange = pickedRange;
+        fromDateText =
+            '${pickedRange.start.day}/${pickedRange.start.month}/${pickedRange.start.year}';
+        toDateText =
+            '${pickedRange.end.day}/${pickedRange.end.month}/${pickedRange.end.year}';
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     double width = SizeConfig.screenW!;
     double height = SizeConfig.screenH!;
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -68,8 +122,87 @@ class _CustomTravellingPlanState extends State<CustomTravellingPlan> {
                 Text(
                   "Select Date :",
                   style: TextStyle(
-                    fontSize: 13,
+                    fontSize: 15,
                     color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: height * 0.01,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                GestureDetector(
+                  onTap: pickDateRange,
+                  child: Card(
+                    elevation: 5,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Container(
+                      padding: EdgeInsets.only(
+                        left: width * 0.05,
+                        right: width * 0.05,
+                      ),
+                      width: 140,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Row(
+                        children: [
+                          const Icon(CupertinoIcons.calendar_badge_plus),
+                          SizedBox(
+                            width: width * 0.03,
+                          ),
+                          Text(
+                            fromDateText,
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: pickDateRange,
+                  child: Card(
+                    elevation: 5,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Container(
+                      padding: EdgeInsets.only(
+                        left: width * 0.05,
+                        right: width * 0.05,
+                      ),
+                      width: 140,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Row(
+                        children: [
+                          const Icon(CupertinoIcons.calendar_badge_plus),
+                          SizedBox(
+                            width: width * 0.03,
+                          ),
+                          Text(
+                            toDateText,
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
               ],
@@ -77,60 +210,137 @@ class _CustomTravellingPlanState extends State<CustomTravellingPlan> {
             SizedBox(
               height: height * 0.02,
             ),
+            const Row(
+              children: [
+                Text(
+                  "Location",
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: height * 0.01,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Card(
-                  elevation: 5,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Container(
-                    padding: EdgeInsets.only(
-                      left: width * 0.05,
-                      right: width * 0.05,
-                    ),
-                    width: 150,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Row(
-                      children: [
-                        const Icon(CupertinoIcons.calendar_badge_plus),
-                        SizedBox(
-                          width: width * 0.03,
+                Row(
+                  children: [
+                    Card(
+                      elevation: 5,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: InkWell(
+                        onTap: () {
+                          setState(() {
+                            selectedLocation = ['South Goa'];
+                          });
+                        },
+                        child: Container(
+                          width: 90,
+                          height: 30,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            color: selectedLocation.contains('South Goa')
+                                ? Colors.blue
+                                : Colors.white,
+                          ),
+                          child: Center(
+                            child: Text(
+                              "South Goa",
+                              style: TextStyle(
+                                fontSize: 10,
+                                color: selectedLocation.contains('South Goa')
+                                    ? Colors.white
+                                    : Colors.black,
+                              ),
+                            ),
+                          ),
                         ),
-                        const Text("from"),
-                      ],
+                      ),
                     ),
-                  ),
+                  ],
                 ),
-                Card(
-                  elevation: 5,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Container(
-                    padding: EdgeInsets.only(
-                      left: width * 0.05,
-                      right: width * 0.05,
-                    ),
-                    width: 150,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Row(
-                      children: [
-                        const Icon(CupertinoIcons.calendar_badge_plus),
-                        SizedBox(
-                          width: width * 0.03,
+                Row(
+                  children: [
+                    Card(
+                      elevation: 5,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: InkWell(
+                        onTap: () {
+                          setState(() {
+                            selectedLocation = ['North Goa'];
+                          });
+                        },
+                        child: Container(
+                          width: 90,
+                          height: 30,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            color: selectedLocation.contains('North Goa')
+                                ? Colors.blue
+                                : Colors.white,
+                          ),
+                          child: Center(
+                            child: Text(
+                              "North Goa",
+                              style: TextStyle(
+                                fontSize: 10,
+                                color: selectedLocation.contains('North Goa')
+                                    ? Colors.white
+                                    : Colors.black,
+                              ),
+                            ),
+                          ),
                         ),
-                        const Text("to"),
-                      ],
+                      ),
                     ),
-                  ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Card(
+                      elevation: 5,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: InkWell(
+                        onTap: () {
+                          setState(() {
+                            selectedLocation = ['Both'];
+                          });
+                        },
+                        child: Container(
+                          width: 90,
+                          height: 30,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            color: selectedLocation.contains('Both')
+                                ? Colors.blue
+                                : Colors.white,
+                          ),
+                          child: Center(
+                            child: Text(
+                              "Both Goa",
+                              style: TextStyle(
+                                fontSize: 10,
+                                color: selectedLocation.contains('Both')
+                                    ? Colors.white
+                                    : Colors.black,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -142,12 +352,16 @@ class _CustomTravellingPlanState extends State<CustomTravellingPlan> {
               children: [
                 const Text(
                   "Number of Visitors:",
-                  style: TextStyle(fontSize: 12, color: Colors.black),
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 Text(
                   "${_visitorCount.toInt()} Visitors",
                   style: const TextStyle(
-                    fontSize: 12,
+                    fontSize: 14,
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                   ),
@@ -186,7 +400,7 @@ class _CustomTravellingPlanState extends State<CustomTravellingPlan> {
             ),
             Column(
               children: [
-                Row(
+                const Row(
                   children: [
                     Text("Selected Tags: ",
                         style: TextStyle(
@@ -204,46 +418,54 @@ class _CustomTravellingPlanState extends State<CustomTravellingPlan> {
                   height: height * 0.02,
                 ),
                 Wrap(
-                  spacing: 5,
-                  runSpacing: 8,
+                  spacing: 15,
+                  runSpacing: 5,
                   children: tags.map((tag) {
-                    bool isSelected = selectedTags
-                        .contains(tag); // Check if the tag is selected
+                    bool isSelected = selectedTags.contains(tag);
 
                     return GestureDetector(
                       onTap: () {
                         setState(() {
                           if (isSelected) {
-                            selectedTags.remove(
-                                tag); // Remove the tag if already selected
+                            selectedTags.remove(tag);
                           } else {
-                            selectedTags
-                                .add(tag); // Add the tag if not selected
+                            if (selectedTags.length < 5) {
+                              selectedTags.add(tag);
+                            }
                           }
                         });
                       },
                       child: Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: isSelected
-                              ? Colors.blue
-                              : Colors
-                                  .transparent, // Set the background color based on the selection
-                          border: Border.all(
-                            color: Colors.grey,
-                          ),
-                        ),
-                        child: Text(
-                          tag,
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: isSelected
-                                ? Colors.white
-                                : Colors
-                                    .black, // Set the text color based on the selection
-                          ),
+                        child: Column(
+                          children: [
+                            Card(
+                              elevation: 5,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Container(
+                                width: 70,
+                                height: 30,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: isSelected
+                                      ? Colors.blue
+                                      : Colors.transparent,
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    tag,
+                                    style: TextStyle(
+                                      fontSize: 11,
+                                      color: isSelected
+                                          ? Colors.white
+                                          : Colors.black,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     );
@@ -302,165 +524,25 @@ class _CustomTravellingPlanState extends State<CustomTravellingPlan> {
               ],
             ),
             SizedBox(
-              height: height * 0.01,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 40.0, right: 10),
-              child: Row(
-                children: [
-                  Text("Tour Plan : ",
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      )),
-                  SizedBox(
-                    width: width * 0.04,
-                  ),
-                  Text(
-                    "Select 5",
-                    style: TextStyle(color: Colors.grey, fontSize: 12),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            Wrap(
-              spacing: 120,
-              runSpacing: 8,
-              children: tourPlan.map((tag) {
-                bool isSelected =
-                    selectedTags.contains(tag); // Check if the tag is selected
-
-                return GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      if (isSelected) {
-                        selectedTags
-                            .remove(tag); // Remove the tag if already selected
-                      } else {
-                        selectedTags.add(tag); // Add the tag if not selected
-                      }
-                    });
-                  },
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: isSelected
-                          ? Colors.blue
-                          : Colors
-                              .transparent, // Set the background color based on the selection
-                      border: Border.all(
-                        color: Colors.grey,
-                      ),
-                    ),
-                    child: Text(
-                      tag,
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: isSelected
-                            ? Colors.white
-                            : Colors
-                                .black, // Set the text color based on the selection
-                      ),
-                    ),
-                  ),
-                );
-              }).toList(),
-            ),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 40.0, right: 10),
-              child: Row(
-                children: [
-                  Text("Location : ",
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      )),
-                  SizedBox(
-                    width: width * 0.04,
-                  ),
-                  Text(
-                    "Select 5",
-                    style: TextStyle(color: Colors.grey, fontSize: 12),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            Wrap(
-              spacing: 30,
-              runSpacing: 8,
-              children: location.map((tag) {
-                bool isSelected =
-                    selectedTags.contains(tag); // Check if the tag is selected
-
-                return GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      if (isSelected) {
-                        selectedTags
-                            .remove(tag); // Remove the tag if already selected
-                      } else {
-                        selectedTags.add(tag); // Add the tag if not selected
-                      }
-                    });
-                  },
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: isSelected
-                          ? Colors.blue
-                          : Colors
-                              .transparent, // Set the background color based on the selection
-                      border: Border.all(
-                        color: Colors.grey,
-                      ),
-                    ),
-                    child: Text(
-                      tag,
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: isSelected
-                            ? Colors.white
-                            : Colors
-                                .black, // Set the text color based on the selection
-                      ),
-                    ),
-                  ),
-                );
-              }).toList(),
-            ),
-            SizedBox(
-              height: height * 0.06,
+              height: height * 0.15,
             ),
             Container(
-              width: width * 0.9,
+              width: width * 0.6,
               height: height * 0.06,
               margin: const EdgeInsets.only(bottom: 20),
               child: ElevatedButton(
                 onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
                 child: const Text(
                   "Generate",
                   style: TextStyle(
                     fontSize: 12,
                     color: Colors.white,
-                  ),
-                ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
                   ),
                 ),
               ),

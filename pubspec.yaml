@@ -51,6 +51,7 @@ dependencies:
   animated_notch_bottom_bar: ^1.0.0
   google_fonts: ^5.1.0
   flutter_svg: ^2.0.7
+  custom_date_range_picker: ^1.0.10
 
   
 
