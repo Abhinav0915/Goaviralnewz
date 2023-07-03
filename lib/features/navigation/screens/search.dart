@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:goaviralnews/features/navigation/widgets/hotels.dart';
-import 'package:goaviralnews/features/navigation/widgets/custom_card.dart';
+
 import 'package:goaviralnews/features/navigation/widgets/yellow_avatar.dart';
 import 'package:goaviralnews/globalVariables.dart';
 import '../../../size_config.dart';

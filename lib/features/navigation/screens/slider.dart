@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:goaviralnews/size_config.dart';
-import 'package:intl/intl.dart';
+
 
 class SliderPage extends StatefulWidget {
   const SliderPage({super.key});
@@ -19,8 +19,8 @@ class _SliderPageState extends State<SliderPage> {
     double width = SizeConfig.screenW!;
     double height = SizeConfig.screenH!;
 
-    var currentDate = DateTime.now();
-    final currentDay = DateFormat('EEEE').format(currentDate);
+    // var currentDate = DateTime.now();
+    // final currentDay = DateFormat('EEEE').format(currentDate);
     bool isSwitched = false;
 
     return Scaffold(

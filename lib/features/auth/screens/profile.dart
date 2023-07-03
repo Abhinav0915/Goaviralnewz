@@ -3,7 +3,7 @@ import 'package:goaviralnews/common/widgets/custom_elevatedbutton.dart';
 import 'package:goaviralnews/features/auth/screens/avatar.dart';
 import 'package:goaviralnews/features/onboarding/screens/onboarding.dart';
 import 'package:goaviralnews/globalVariables.dart';
-import 'package:goaviralnews/main.dart';
+
 import 'package:intl/intl.dart';
 import '../../../size_config.dart';
 

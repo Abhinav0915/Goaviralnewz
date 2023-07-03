@@ -15,7 +15,6 @@ class CustomBottomNavigationBar extends StatefulWidget {
 
 class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   late NotchBottomBarController _controller;
-  int _currentIndex = 0;
 
   @override
   void initState() {
@@ -120,7 +119,6 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         ],
         onTap: (index) {
           setState(() {
-            _currentIndex = index;
           });
           _navigateToScreen((index).toString());
         },

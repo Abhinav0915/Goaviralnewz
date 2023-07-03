@@ -23,7 +23,7 @@ class Meditation extends StatelessWidget {
   Widget build(BuildContext context) {
     var CardRadius = 20.0;
     SizeConfig().init(context);
-    double width = SizeConfig.screenW!;
+
     double height = SizeConfig.screenH!;
     return Column(
       children: [

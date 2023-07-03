@@ -2,8 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:goaviralnews/globalVariables.dart';
 import '../../../size_config.dart';
-import 'package:custom_date_range_picker/custom_date_range_picker.dart'
-    as DateRangePicker;
+
 
 class CustomTravellingPlan extends StatefulWidget {
   const CustomTravellingPlan({Key? key});
