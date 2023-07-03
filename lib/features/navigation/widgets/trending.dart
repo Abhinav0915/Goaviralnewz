@@ -75,6 +75,8 @@ class Trending extends StatelessWidget {
         Text(
           name,
           style: TextStyle(
+            fontFamily: 'ComicSans',
+            fontSize: 11,
             color: Colors.blue,
             fontWeight: FontWeight.w500,
           ),
