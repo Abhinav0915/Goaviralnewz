@@ -43,16 +43,16 @@ class _DashboardPageState extends State<DashboardPage> {
 
       bottomNavigationBar: Container(
         height: 80,
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.only(
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.only(
             topLeft: Radius.circular(25.0),
             topRight: Radius.circular(25.0),
           ),
         ),
         child: Container(
           padding: const EdgeInsets.only(left: 10, right: 10),
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.only(
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.only(
               topLeft: Radius.circular(25.0),
               topRight: Radius.circular(25.0),
             ),
@@ -71,7 +71,7 @@ class _DashboardPageState extends State<DashboardPage> {
                         builder: (context) => const DashboardPage()),
                   );
                 },
-                icon: Icon(Icons.home),
+                icon: const Icon(Icons.home),
                 color: _currentIndex == 0 ? Colors.blue : Colors.grey,
               ),
               IconButton(
@@ -84,7 +84,7 @@ class _DashboardPageState extends State<DashboardPage> {
                     MaterialPageRoute(builder: (context) => const SearchPage()),
                   );
                 },
-                icon: Icon(Icons.search),
+                icon: const Icon(Icons.search),
                 color: _currentIndex == 1 ? Colors.blue : Colors.grey,
               ),
               IconButton(
@@ -99,7 +99,7 @@ class _DashboardPageState extends State<DashboardPage> {
                     ),
                   );
                 },
-                icon: Icon(Icons.bookmark),
+                icon: const Icon(Icons.bookmark),
                 color: _currentIndex == 2 ? Colors.blue : Colors.grey,
               ),
               IconButton(
@@ -112,7 +112,7 @@ class _DashboardPageState extends State<DashboardPage> {
                     MaterialPageRoute(builder: (context) => const SliderPage()),
                   );
                 },
-                icon: Icon(Icons.person_2),
+                icon: const Icon(Icons.person_2),
                 color: _currentIndex == 3 ? Colors.blue : Colors.grey,
               ),
             ],
@@ -288,26 +288,37 @@ class _DashboardPageState extends State<DashboardPage> {
                 height: height * 0.025,
               ),
               Container(
-                padding: const EdgeInsets.only(left: 5, right: 5),
+                padding: const EdgeInsets.only(left: 5),
                 child: Container(
+                  height: 50,
                   padding: const EdgeInsets.fromLTRB(15, 5, 10, 3),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
                     color: Colors.grey.shade200,
                   ),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "Get your personalised trip plan",
-                      hintStyle: const TextStyle(
-                        fontFamily: 'ComicSans',
-                        overflow: TextOverflow.ellipsis,
-                        color: Colors.grey,
-                        // fontFamily: popins,
-
-                        fontSize: 15,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            "/customtrip-page",
+                          );
+                        },
+                        child: const Expanded(
+                          child: Text(
+                            "Get your personalised trip plan",
+                            style: TextStyle(
+                              fontFamily: 'ComicSans',
+                              overflow: TextOverflow.ellipsis,
+                              color: Colors.grey,
+                              fontSize: 15,
+                            ),
+                          ),
+                        ),
                       ),
-                      suffixIcon: Row(
+                      Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           const Icon(
@@ -326,7 +337,7 @@ class _DashboardPageState extends State<DashboardPage> {
                           ),
                         ],
                       ),
-                    ),
+                    ],
                   ),
                 ),
               ),
@@ -375,7 +386,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                       child: ClipRRect(
                                         borderRadius: BorderRadius.circular(30),
                                         child: Image.asset(
-                                          "assets/images/GoaTour.png",
+                                          "assets/images/2.png",
                                           fit: BoxFit.cover,
                                         ),
                                       ),
@@ -430,7 +441,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                       width: 80,
                                       height: 80,
                                       child: Image.asset(
-                                        "assets/images/clubs.png",
+                                        "assets/images/6.png",
                                         fit: BoxFit.cover,
                                       ),
                                     ),
@@ -477,7 +488,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                     width: 80,
                                     height: 80,
                                     child: Image.asset(
-                                      "assets/images/stay.png",
+                                      "assets/images/3.png",
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -523,7 +534,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                     width: 80,
                                     height: 80,
                                     child: Image.asset(
-                                      "assets/images/food.png",
+                                      "assets/images/5.png",
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -571,7 +582,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                       width: 80,
                                       height: 80,
                                       child: Image.asset(
-                                        "assets/images/beacchhh.jpeg",
+                                        "assets/images/4.png",
                                         fit: BoxFit.cover,
                                       ),
                                     ),
@@ -620,7 +631,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                       width: 80,
                                       height: 80,
                                       child: Image.asset(
-                                        "assets/images/events.png",
+                                        "assets/images/7.png",
                                         fit: BoxFit.cover,
                                       ),
                                     ),
@@ -669,7 +680,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                       width: 80,
                                       height: 80,
                                       child: Image.asset(
-                                        "assets/images/Historical.png",
+                                        "assets/images/9.png",
                                         fit: BoxFit.cover,
                                       ),
                                     ),
@@ -718,7 +729,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                       width: 80,
                                       height: 80,
                                       child: Image.asset(
-                                        "assets/images/adventure.png",
+                                        "assets/images/8.png",
                                         fit: BoxFit.cover,
                                       ),
                                     ),
@@ -846,7 +857,7 @@ class _DashboardPageState extends State<DashboardPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Row(
+                            const Row(
                               children: [
                                 Text("Parties",
                                     style: TextStyle(
@@ -860,7 +871,7 @@ class _DashboardPageState extends State<DashboardPage> {
                             SizedBox(
                               height: height * 0.005,
                             ),
-                            Row(
+                            const Row(
                               children: [
                                 Text("Live \nEvents",
                                     style: TextStyle(
@@ -874,7 +885,7 @@ class _DashboardPageState extends State<DashboardPage> {
                             SizedBox(
                               height: height * 0.005,
                             ),
-                            Row(
+                            const Row(
                               children: [
                                 Text("#trending",
                                     style: TextStyle(
@@ -946,7 +957,7 @@ class _DashboardPageState extends State<DashboardPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Row(
+                            const Row(
                               children: [
                                 Text("SUNRISE",
                                     style: TextStyle(
@@ -960,7 +971,7 @@ class _DashboardPageState extends State<DashboardPage> {
                             SizedBox(
                               height: height * 0.005,
                             ),
-                            Row(
+                            const Row(
                               children: [
                                 Text("Best \nChoice",
                                     style: TextStyle(
@@ -974,7 +985,7 @@ class _DashboardPageState extends State<DashboardPage> {
                             SizedBox(
                               height: height * 0.005,
                             ),
-                            Row(
+                            const Row(
                               children: [
                                 Text("#morningmood",
                                     style: TextStyle(
@@ -1046,7 +1057,7 @@ class _DashboardPageState extends State<DashboardPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Row(
+                            const Row(
                               children: [
                                 Text("EVENING",
                                     style: TextStyle(
@@ -1060,7 +1071,7 @@ class _DashboardPageState extends State<DashboardPage> {
                             SizedBox(
                               height: height * 0.005,
                             ),
-                            Row(
+                            const Row(
                               children: [
                                 Text("Best \nChoice",
                                     style: TextStyle(
@@ -1074,7 +1085,7 @@ class _DashboardPageState extends State<DashboardPage> {
                             SizedBox(
                               height: height * 0.005,
                             ),
-                            Row(
+                            const Row(
                               children: [
                                 Text("#walkingtime",
                                     style: TextStyle(
@@ -1126,9 +1137,9 @@ class _DashboardPageState extends State<DashboardPage> {
               SizedBox(
                 height: height * 0.015,
               ),
-              Align(
+              const Align(
                 alignment: Alignment.center,
-                child: const Text("Check out some amazing services",
+                child: Text("Check out some amazing services",
                     style: TextStyle(
                       fontFamily: 'ComicSans',
                       fontSize: 12,
