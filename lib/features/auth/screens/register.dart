@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:goaviralnews/common/widgets/custom_appbar.dart';
 import 'package:goaviralnews/common/widgets/custom_elevatedbutton.dart';
@@ -8,6 +9,8 @@ import '../../../size_config.dart';
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
 
+  static String verify = "";
+
   static const String routName = "/register-page";
 
   @override
@@ -17,6 +20,16 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   bool _noButtonClicked = false;
   String? phoneNumber;
+  var phone = "";
+
+  TextEditingController _countrycode = TextEditingController();
+
+  @override
+  void initState() {
+    _countrycode.text = "+91";
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,29 +71,81 @@ class _RegisterPageState extends State<RegisterPage> {
                       height: height * 0.08,
                     ),
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 6),
-                      child: IntlPhoneField(
-                        flagsButtonMargin: const EdgeInsets.symmetric(
-                          horizontal: 8,
+                      height: height * 0.06,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(
+                          color: Colors.black,
                         ),
-                        decoration: const InputDecoration(
-                          hintText: 'Mobile Number',
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: GlobalVariables.fadedTextColor,
-                              width: 0.5,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: width * 0.05,
+                          ),
+                          SizedBox(
+                            width: width * 0.08,
+                            child: TextField(
+                                controller: _countrycode,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                )),
+                          ),
+                          Text(
+                            "|",
+                            style: TextStyle(fontSize: 33, color: Colors.grey),
+                          ),
+                          SizedBox(width: width * 0.05),
+                          Expanded(
+                            child: TextField(
+                              onChanged: (value) {
+                                phone = value;
+                              },
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: "Enter Number",
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                        initialCountryCode: 'IN',
-                        onChanged: (phone) {
-                          phoneNumber = phone.number;
-                          print(phone.completeNumber);
-                          print(phone.countryCode);
-                          print(phone.number);
-                        },
+                        ],
                       ),
                     ),
+
+                    // Container(
+                    //   padding: const EdgeInsets.symmetric(horizontal: 6),
+                    //   child: TextField(
+                    //     decoration: InputDecoration(
+                    //       hintText: "Enter Mobile Number",
+                    //       hintStyle: TextStyle(
+                    //         fontSize: 16,
+                    //         fontWeight: FontWeight.w400,
+                    //       ),
+                    //       border: OutlineInputBorder(
+                    //         borderRadius: BorderRadius.circular(8),
+                    //         borderSide: BorderSide(
+                    //           color: Colors.black,
+                    //         ),
+                    //       ),
+                    //       enabledBorder: OutlineInputBorder(
+                    //         borderRadius: BorderRadius.circular(8),
+                    //         borderSide: BorderSide(
+                    //           color: Colors.black,
+                    //         ),
+                    //       ),
+                    //       focusedBorder: OutlineInputBorder(
+                    //         borderRadius: BorderRadius.circular(8),
+                    //
+                    //       ),
+                    //     ),
+                    //   ),
+                    //   ),
+
                     SizedBox(
                       height: height * 0.025,
                     ),
@@ -199,11 +264,20 @@ class _RegisterPageState extends State<RegisterPage> {
                 child: CustomElevatedButton(
                   title: "Verify Number",
                   router: "/otp-verification-register-page",
-                  onPressed: () {
-                    Navigator.pushNamed(
-                      context,
-                      "/otp-verification-register-page",
-                      arguments: phoneNumber,
+                  onPressed: () async {
+                    await FirebaseAuth.instance.verifyPhoneNumber(
+                      phoneNumber: '${_countrycode.text + phone}',
+                      verificationCompleted:
+                          (PhoneAuthCredential credential) {},
+                      verificationFailed: (FirebaseAuthException e) {},
+                      codeSent: (String verificationId, int? resendToken) {
+                        RegisterPage.verify = verificationId;
+                        Navigator.pushNamed(
+                          context,
+                          "/otp-verification-page",
+                        );
+                      },
+                      codeAutoRetrievalTimeout: (String verificationId) {},
                     );
                   },
                 ),
