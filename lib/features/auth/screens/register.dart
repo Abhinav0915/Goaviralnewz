@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:goaviralnews/common/widgets/custom_appbar.dart';
 import 'package:goaviralnews/common/widgets/custom_elevatedbutton.dart';
 import 'package:goaviralnews/globalVariables.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
 import '../../../size_config.dart';
 
 class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key});
+  const RegisterPage({Key? key}) : super(key: key);
 
-  static String verify = "";
+  static String? _verify;
+
+  static String? get verify => _verify;
 
   static const String routName = "/register-page";
 
@@ -27,7 +28,6 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   void initState() {
     _countrycode.text = "+91";
-    // TODO: implement initState
     super.initState();
   }
 
@@ -88,22 +88,27 @@ class _RegisterPageState extends State<RegisterPage> {
                             width: width * 0.08,
                             child: TextField(
                                 controller: _countrycode,
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   border: InputBorder.none,
                                 )),
                           ),
-                          Text(
-                            "|",
-                            style: TextStyle(fontSize: 33, color: Colors.grey),
+                          Container(
+                            height: height * 0.035,
+                            width: 1,
+                            color: Colors.grey,
                           ),
-                          SizedBox(width: width * 0.05),
+                          // Text(
+                          //   "|",
+                          //   style: TextStyle(fontSize: 20, color: Colors.grey),
+                          // ),
+                          SizedBox(width: width * 0.04),
                           Expanded(
                             child: TextField(
                               onChanged: (value) {
                                 phone = value;
                               },
                               keyboardType: TextInputType.number,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 border: InputBorder.none,
                                 hintText: "Enter Number",
                                 hintStyle: TextStyle(
@@ -116,36 +121,6 @@ class _RegisterPageState extends State<RegisterPage> {
                         ],
                       ),
                     ),
-
-                    // Container(
-                    //   padding: const EdgeInsets.symmetric(horizontal: 6),
-                    //   child: TextField(
-                    //     decoration: InputDecoration(
-                    //       hintText: "Enter Mobile Number",
-                    //       hintStyle: TextStyle(
-                    //         fontSize: 16,
-                    //         fontWeight: FontWeight.w400,
-                    //       ),
-                    //       border: OutlineInputBorder(
-                    //         borderRadius: BorderRadius.circular(8),
-                    //         borderSide: BorderSide(
-                    //           color: Colors.black,
-                    //         ),
-                    //       ),
-                    //       enabledBorder: OutlineInputBorder(
-                    //         borderRadius: BorderRadius.circular(8),
-                    //         borderSide: BorderSide(
-                    //           color: Colors.black,
-                    //         ),
-                    //       ),
-                    //       focusedBorder: OutlineInputBorder(
-                    //         borderRadius: BorderRadius.circular(8),
-                    //
-                    //       ),
-                    //     ),
-                    //   ),
-                    //   ),
-
                     SizedBox(
                       height: height * 0.025,
                     ),
@@ -162,11 +137,13 @@ class _RegisterPageState extends State<RegisterPage> {
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
-                            Icon(
-                              Icons.change_circle_outlined,
-                              size: 16,
-                              color: Colors.lightGreenAccent.shade700,
-                            ),
+                            Image.asset("assets/icons/whatsapp.png",
+                                height: 16, width: 16),
+                            // Icon(
+                            //   Icons.change_circle_outlined,
+                            //   size: 16,
+                            //   color: Colors.lightGreenAccent.shade700,
+                            // ),
                             const Text(
                               " Whatsapp?",
                               style: TextStyle(
@@ -190,7 +167,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   fontSize: 16,
                                   fontWeight: FontWeight.w500,
                                 ),
-                                shape: RoundedRectangleBorder(
+                                shape: const RoundedRectangleBorder(
                                   borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(8),
                                     bottomLeft: Radius.circular(8),
@@ -223,7 +200,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   fontSize: 16,
                                   fontWeight: FontWeight.w500,
                                 ),
-                                shape: RoundedRectangleBorder(
+                                shape: const RoundedRectangleBorder(
                                   borderRadius: BorderRadius.only(
                                     topRight: Radius.circular(8),
                                     bottomRight: Radius.circular(8),
@@ -271,7 +248,9 @@ class _RegisterPageState extends State<RegisterPage> {
                           (PhoneAuthCredential credential) {},
                       verificationFailed: (FirebaseAuthException e) {},
                       codeSent: (String verificationId, int? resendToken) {
-                        RegisterPage.verify = verificationId;
+                        setState(() {
+                          RegisterPage._verify = verificationId;
+                        });
                         Navigator.pushNamed(
                           context,
                           "/otp-verification-page",

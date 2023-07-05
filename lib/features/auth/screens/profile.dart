@@ -21,7 +21,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
   TextEditingController _nameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
 
-  String selectedAvatar = "assets/icons/Group 42.png"; // Default avatar path
+  String selectedAvatar = "assets/icons/addstory.png"; // Default avatar path
   String name = "Your Name"; // Default name value
   String emailAddress =
       "enter your email address"; // Default email address value
@@ -61,29 +61,6 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                   SizedBox(
                     height: height * 0.025,
                   ),
-                  Row(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: GlobalVariables.primaryIconButtonBorderColor,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(16.0),
-                        ),
-                        child: IconButton(
-                          // ignore: prefer_const_constructors
-                          icon: Icon(
-                            Icons.arrow_back_ios_new_rounded,
-                          ),
-                          onPressed: () {
-                            Navigator.pushNamed(
-                                context, OnboardingPage.routName);
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
                   GestureDetector(
                     onTap: () {
                       Navigator.pushNamed(context, AvatarPage.routName)
@@ -107,7 +84,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                           right: 0,
                           bottom: 6,
                           child: Container(
-                            padding: EdgeInsets.all(4),
+                            padding: const EdgeInsets.all(4),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(24),
                               color: GlobalVariables.extraFadedTextColor,
@@ -130,61 +107,13 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                     children: [
                       Text(
                         name,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
                         ),
                       ),
                       SizedBox(
                         width: width * 0.04,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              TextEditingController _nameController =
-                                  TextEditingController(text: name);
-
-                              return AlertDialog(
-                                title: Text('Edit Name'),
-                                content: TextField(
-                                  controller: _nameController,
-                                  decoration: InputDecoration(
-                                    hintText: 'Enter your name',
-                                  ),
-                                ),
-                                actions: <Widget>[
-                                  TextButton(
-                                    child: Text('Cancel'),
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                  ),
-                                  TextButton(
-                                    child: Text('Save'),
-                                    onPressed: () {
-                                      // Save the updated name and close the dialog
-                                      name = _nameController.text;
-                                      // Do something with the new name, e.g., update it in the database
-                                      Navigator.of(context).pop();
-                                    },
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-                        },
-                        child: Container(
-                          color: GlobalVariables.fadedTextColor,
-                          height: 18,
-                          width: 18,
-                          child: Icon(
-                            Icons.edit,
-                            color: GlobalVariables.backgroundColor,
-                            size: 18,
-                          ),
-                        ),
                       ),
                     ],
                   ),
@@ -196,14 +125,14 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                     children: [
                       Text(
                         emailAddress,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 14,
                           color: GlobalVariables.extraFadedTextColor,
                         ),
                       ),
                       SizedBox(
-                        width: width * 0.04,
+                        width: width * 0.02,
                       ),
                       GestureDetector(
                         onTap: () {
@@ -214,22 +143,22 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                                   TextEditingController(text: emailAddress);
 
                               return AlertDialog(
-                                title: Text('Edit Email Address'),
+                                title: const Text('Edit Email Address'),
                                 content: TextField(
                                   controller: _emailController,
-                                  decoration: InputDecoration(
+                                  decoration: const InputDecoration(
                                     hintText: 'Enter your email address',
                                   ),
                                 ),
                                 actions: <Widget>[
                                   TextButton(
-                                    child: Text('Cancel'),
+                                    child: const Text('Cancel'),
                                     onPressed: () {
                                       Navigator.of(context).pop();
                                     },
                                   ),
                                   TextButton(
-                                    child: Text('Save'),
+                                    child: const Text('Save'),
                                     onPressed: () {
                                       // Save the updated email address and close the dialog
                                       emailAddress = _emailController.text;
@@ -243,10 +172,13 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                           );
                         },
                         child: Container(
-                          color: GlobalVariables.extraFadedTextColor,
-                          height: 14,
-                          width: 14,
-                          child: Icon(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(24),
+                            color: GlobalVariables.extraFadedTextColor,
+                          ),
+                          height: 18,
+                          width: 18,
+                          child: const Icon(
                             Icons.edit,
                             color: GlobalVariables.backgroundColor,
                             size: 14,
@@ -263,7 +195,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                     child: Column(
                       children: [
                         TextFormField(
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             hintText: "What's your first name?",
                           ),
                           validator: (value) {
@@ -339,7 +271,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                                   }
                                 });
                               },
-                              icon: Icon(Icons.calendar_today),
+                              icon: const Icon(Icons.calendar_today),
                             ),
                           ),
                           controller: TextEditingController(
@@ -361,7 +293,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                 ],
               ),
               SizedBox(
-                height: height * 0.18,
+                height: height * 0.12,
               ),
               CustomElevatedButton(
                 router: "/routes",

@@ -1,13 +1,6 @@
-import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
-
-import 'package:goaviralnews/features/navigation/screens/photo_gallery.dart';
-import 'package:goaviralnews/features/navigation/screens/search.dart';
-import 'package:goaviralnews/features/navigation/screens/slider.dart';
 import 'package:goaviralnews/globalVariables.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../size_config.dart';
@@ -24,7 +17,6 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
   String selectedAvatar = "assets/icons/addstory.png";
-  int _currentIndex = 0;
 
 // Default avatar path
 
@@ -41,84 +33,84 @@ class _DashboardPageState extends State<DashboardPage> {
       backgroundColor: GlobalVariables.backgroundColor,
       // bottomNavigationBar: CustomBottomNavigationBar(),
 
-      bottomNavigationBar: Container(
-        height: 80,
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(25.0),
-            topRight: Radius.circular(25.0),
-          ),
-        ),
-        child: Container(
-          padding: const EdgeInsets.only(left: 10, right: 10),
-          decoration: const BoxDecoration(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(25.0),
-              topRight: Radius.circular(25.0),
-            ),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              IconButton(
-                onPressed: () {
-                  setState(() {
-                    _currentIndex = 0;
-                  });
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const DashboardPage()),
-                  );
-                },
-                icon: const Icon(Icons.home),
-                color: _currentIndex == 0 ? Colors.blue : Colors.grey,
-              ),
-              IconButton(
-                onPressed: () {
-                  setState(() {
-                    _currentIndex = 1;
-                  });
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const SearchPage()),
-                  );
-                },
-                icon: const Icon(Icons.search),
-                color: _currentIndex == 1 ? Colors.blue : Colors.grey,
-              ),
-              IconButton(
-                onPressed: () {
-                  setState(() {
-                    _currentIndex = 2;
-                  });
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const PhotoGalleryScreen(),
-                    ),
-                  );
-                },
-                icon: const Icon(Icons.bookmark),
-                color: _currentIndex == 2 ? Colors.blue : Colors.grey,
-              ),
-              IconButton(
-                onPressed: () {
-                  setState(() {
-                    _currentIndex = 3;
-                  });
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const SliderPage()),
-                  );
-                },
-                icon: const Icon(Icons.person_2),
-                color: _currentIndex == 3 ? Colors.blue : Colors.grey,
-              ),
-            ],
-          ),
-        ),
-      ),
+      // bottomNavigationBar: Container(
+      //   height: 80,
+      //   decoration: const BoxDecoration(
+      //     borderRadius: BorderRadius.only(
+      //       topLeft: Radius.circular(25.0),
+      //       topRight: Radius.circular(25.0),
+      //     ),
+      //   ),
+      //   child: Container(
+      //     padding: const EdgeInsets.only(left: 10, right: 10),
+      //     decoration: const BoxDecoration(
+      //       borderRadius: BorderRadius.only(
+      //         topLeft: Radius.circular(25.0),
+      //         topRight: Radius.circular(25.0),
+      //       ),
+      //     ),
+      //     child: Row(
+      //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      //       children: [
+      //         IconButton(
+      //           onPressed: () {
+      //             setState(() {
+      //               _currentIndex = 0;
+      //             });
+      //             Navigator.push(
+      //               context,
+      //               MaterialPageRoute(
+      //                   builder: (context) => const DashboardPage()),
+      //             );
+      //           },
+      //           icon: const Icon(Icons.home),
+      //           color: _currentIndex == 0 ? Colors.blue : Colors.grey,
+      //         ),
+      //         IconButton(
+      //           onPressed: () {
+      //             setState(() {
+      //               _currentIndex = 1;
+      //             });
+      //             Navigator.push(
+      //               context,
+      //               MaterialPageRoute(builder: (context) => const SearchPage()),
+      //             );
+      //           },
+      //           icon: const Icon(Icons.search),
+      //           color: _currentIndex == 1 ? Colors.blue : Colors.grey,
+      //         ),
+      //         IconButton(
+      //           onPressed: () {
+      //             setState(() {
+      //               _currentIndex = 2;
+      //             });
+      //             Navigator.push(
+      //               context,
+      //               MaterialPageRoute(
+      //                 builder: (context) => const PhotoGalleryScreen(),
+      //               ),
+      //             );
+      //           },
+      //           icon: const Icon(Icons.bookmark),
+      //           color: _currentIndex == 2 ? Colors.blue : Colors.grey,
+      //         ),
+      //         IconButton(
+      //           onPressed: () {
+      //             setState(() {
+      //               _currentIndex = 3;
+      //             });
+      //             Navigator.push(
+      //               context,
+      //               MaterialPageRoute(builder: (context) => const SliderPage()),
+      //             );
+      //           },
+      //           icon: const Icon(Icons.person_2),
+      //           color: _currentIndex == 3 ? Colors.blue : Colors.grey,
+      //         ),
+      //       ],
+      //     ),
+      //   ),
+      // ),
       body: SafeArea(
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
@@ -128,112 +120,94 @@ class _DashboardPageState extends State<DashboardPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // ignore: prefer_const_constructors
-                  // SizedBox(
-                  //   width: width * 0.025,
-                  // ),
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: width * 0.05,
-                      vertical: height * 0.015,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(24),
-                      color: Colors.white,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                const ImageIcon(
-                                  AssetImage("assets/icons/instagram.png"),
-                                  color: Colors.pink,
-                                  size: 20,
-                                ),
-                                SizedBox(
-                                  width: width * 0.025,
-                                ),
-                                const Text(
-                                  "Follow us on Instagram",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 12,
-                                    fontFamily: 'ComicSans',
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: width * 0.025,
-                                ),
-                                GestureDetector(
-                                  child: Container(
-                                    height: 18,
-                                    width: 30,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      color: Colors.blue,
-                                    ),
-                                    child: const Center(
-                                      child: Icon(
-                                        Icons.arrow_forward,
-                                        size: 12,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: height * 0.01,
-                            ),
-                            const Text(
-                              "Share your reels with us and attract Discount",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                color: Colors.grey,
-                                fontSize: 10,
-                                fontFamily: 'ComicSans',
+                  Row(
+                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // ignore: prefer_const_constructors
+                      // SizedBox(
+                      //   width: width * 0.025,
+                      // ),
+                      GestureDetector(
+                        child: Container(
+                          padding: const EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.3),
+                                spreadRadius: 1,
+                                blurRadius: 4,
+                                offset: const Offset(0, 3),
                               ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          width: width * 0.025,
-                        ),
-                      ],
-                    ),
-                  ),
-                  GestureDetector(
-                    child: Container(
-                      padding: const EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.3),
-                            spreadRadius: 2,
-                            blurRadius: 5,
-                            offset: const Offset(0, 3),
+                            ],
                           ),
+                          child: Center(
+                            child: Image.asset("assets/icons/addstory.png",
+                                width: 40, height: 40),
+                          ),
+                        ),
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            "/slider-page",
+                          );
+                        },
+                      ),
+                      SizedBox(
+                        width: width * 0.05,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Text("Hi,",
+                                  style: GoogleFonts.poppins(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color.fromARGB(255, 24, 70, 105))),
+                              SizedBox(
+                                width: width * 0.02,
+                              ),
+                              Text(
+                                "Abhinav",
+                                style: GoogleFonts.poppins(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    decoration: TextDecoration.underline,
+                                    color: Color.fromARGB(255, 24, 70, 105)),
+                              ),
+                              Text("👋",
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.location_on,
+                                color: Colors.black,
+                                size: 12,
+                              ),
+                              Text("Knowledge Park 3, Greater Noida, India",
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w500,
+                                  )),
+                            ],
+                          )
                         ],
                       ),
-                      child: Center(
-                        child: Image.asset("assets/icons/addstory.png",
-                            width: 40, height: 40),
-                      ),
-                    ),
-                    onTap: () {
-                      Navigator.pushNamed(
-                        context,
-                        "/slider-page",
-                      );
-                    },
-                  )
+                    ],
+                  ),
+                  Icon(
+                    CupertinoIcons.bell,
+                    color: Colors.black,
+                    size: 30,
+                  ),
                 ],
               ),
               SizedBox(
@@ -306,15 +280,13 @@ class _DashboardPageState extends State<DashboardPage> {
                             "/customtrip-page",
                           );
                         },
-                        child: const Expanded(
-                          child: Text(
-                            "Get your personalised trip plan",
-                            style: TextStyle(
-                              fontFamily: 'ComicSans',
-                              overflow: TextOverflow.ellipsis,
-                              color: Colors.grey,
-                              fontSize: 15,
-                            ),
+                        child: const Text(
+                          "Get your personalised trip plan",
+                          style: TextStyle(
+                            fontFamily: 'ComicSans',
+                            overflow: TextOverflow.ellipsis,
+                            color: Colors.grey,
+                            fontSize: 15,
                           ),
                         ),
                       ),
@@ -756,7 +728,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 height: height * 0.025,
               ),
               Container(
-                height: 70,
+                height: 75,
                 width: double.infinity,
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
@@ -773,27 +745,71 @@ class _DashboardPageState extends State<DashboardPage> {
                 ),
                 child: Row(
                   children: [
-                    const Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "SURPRISE!",
-                          style: TextStyle(
-                            fontSize: 8,
-                            fontFamily: 'ComicSans',
-                            color: Color.fromARGB(255, 13, 128, 223),
-                            fontWeight: FontWeight.bold,
+                    Container(
+                      height: 80,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(24),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  const ImageIcon(
+                                    AssetImage("assets/icons/instagram.png"),
+                                    color: Colors.pink,
+                                    size: 12,
+                                  ),
+                                  SizedBox(
+                                    width: width * 0.025,
+                                  ),
+                                  Text(
+                                    "Follow us on Instagram",
+                                    style: GoogleFonts.poppins(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: width * 0.025,
+                                  ),
+                                  GestureDetector(
+                                    child: Container(
+                                      height: 20,
+                                      width: 30,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                        color: Colors.blue,
+                                      ),
+                                      child: const Center(
+                                        child: Icon(
+                                          Icons.arrow_forward,
+                                          size: 15,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                              Text(
+                                "Share your reels with us and attract Discount",
+                                style: GoogleFonts.poppins(
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.grey,
+                                  fontSize: 10,
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                        Text(
-                          "Open your gift now!",
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontFamily: 'ComicSans',
-                            fontWeight: FontWeight.bold,
+                          SizedBox(
+                            width: width * 0.025,
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                     const Spacer(),
                     Container(
@@ -813,12 +829,11 @@ class _DashboardPageState extends State<DashboardPage> {
               SizedBox(
                 height: height * 0.035,
               ),
-              const Row(
+              Row(
                 children: [
                   Text("Hot Locations 🔥",
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                         fontSize: 16,
-                        fontFamily: 'ComicSans',
                       )),
                 ],
               ),
@@ -857,11 +872,10 @@ class _DashboardPageState extends State<DashboardPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Row(
+                            Row(
                               children: [
                                 Text("Parties",
-                                    style: TextStyle(
-                                      fontFamily: 'ComicSans',
+                                    style: GoogleFonts.poppins(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
@@ -871,11 +885,10 @@ class _DashboardPageState extends State<DashboardPage> {
                             SizedBox(
                               height: height * 0.005,
                             ),
-                            const Row(
+                            Row(
                               children: [
                                 Text("Live \nEvents",
-                                    style: TextStyle(
-                                      fontFamily: 'ComicSans',
+                                    style: GoogleFonts.poppins(
                                       fontSize: 25,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
@@ -913,11 +926,10 @@ class _DashboardPageState extends State<DashboardPage> {
                                       ),
                                     ),
                                     onPressed: () {},
-                                    child: const Text(
+                                    child: Text(
                                       "Visit Place",
-                                      style: TextStyle(
+                                      style: GoogleFonts.poppins(
                                         color: Colors.blue,
-                                        fontFamily: 'ComicSans',
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -957,11 +969,10 @@ class _DashboardPageState extends State<DashboardPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Row(
+                            Row(
                               children: [
                                 Text("SUNRISE",
-                                    style: TextStyle(
-                                      fontFamily: 'ComicSans',
+                                    style: GoogleFonts.poppins(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
@@ -971,11 +982,10 @@ class _DashboardPageState extends State<DashboardPage> {
                             SizedBox(
                               height: height * 0.005,
                             ),
-                            const Row(
+                            Row(
                               children: [
                                 Text("Best \nChoice",
-                                    style: TextStyle(
-                                      fontFamily: 'ComicSans',
+                                    style: GoogleFonts.poppins(
                                       fontSize: 25,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
@@ -1013,11 +1023,10 @@ class _DashboardPageState extends State<DashboardPage> {
                                       ),
                                     ),
                                     onPressed: () {},
-                                    child: const Text(
+                                    child: Text(
                                       "Visit Place",
-                                      style: TextStyle(
+                                      style: GoogleFonts.poppins(
                                         color: Colors.blue,
-                                        fontFamily: 'ComicSans',
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -1057,11 +1066,10 @@ class _DashboardPageState extends State<DashboardPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Row(
+                            Row(
                               children: [
                                 Text("EVENING",
-                                    style: TextStyle(
-                                      fontFamily: 'ComicSans',
+                                    style: GoogleFonts.poppins(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
@@ -1071,11 +1079,10 @@ class _DashboardPageState extends State<DashboardPage> {
                             SizedBox(
                               height: height * 0.005,
                             ),
-                            const Row(
+                            Row(
                               children: [
                                 Text("Best \nChoice",
-                                    style: TextStyle(
-                                      fontFamily: 'ComicSans',
+                                    style: GoogleFonts.poppins(
                                       fontSize: 25,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
@@ -1113,11 +1120,10 @@ class _DashboardPageState extends State<DashboardPage> {
                                       ),
                                     ),
                                     onPressed: () {},
-                                    child: const Text(
+                                    child: Text(
                                       "Visit Place",
-                                      style: TextStyle(
+                                      style: GoogleFonts.poppins(
                                         color: Colors.blue,
-                                        fontFamily: 'ComicSans',
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -1137,11 +1143,10 @@ class _DashboardPageState extends State<DashboardPage> {
               SizedBox(
                 height: height * 0.015,
               ),
-              const Align(
+              Align(
                 alignment: Alignment.center,
                 child: Text("Check out some amazing services",
-                    style: TextStyle(
-                      fontFamily: 'ComicSans',
+                    style: GoogleFonts.poppins(
                       fontSize: 12,
                     )),
               ),
@@ -1183,20 +1188,18 @@ class _DashboardPageState extends State<DashboardPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                const Text(
+                                Text(
                                   "GET ",
-                                  style: TextStyle(
-                                    fontFamily: 'ComicSans',
+                                  style: GoogleFonts.poppins(
                                     fontSize: 25,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
                                   ),
                                 ),
-                                const Text(
+                                Text(
                                   "50% OFF",
-                                  style: TextStyle(
+                                  style: GoogleFonts.poppins(
                                     fontSize: 25,
-                                    fontFamily: 'ComicSans',
                                     fontWeight: FontWeight.w900,
                                     color: Colors.white,
                                   ),
@@ -1204,34 +1207,32 @@ class _DashboardPageState extends State<DashboardPage> {
                                 SizedBox(
                                   height: height * 0.005,
                                 ),
-                                const Text(
+                                Text(
                                   "On Drink's specials",
-                                  style: TextStyle(
-                                    fontFamily: 'ComicSans',
+                                  style: GoogleFonts.poppins(
                                     fontSize: 15,
                                     color: Colors.white,
                                   ),
                                 ),
-                                const Row(
+                                Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
                                       Text(
                                         "from",
-                                        style: TextStyle(
-                                          fontFamily: 'ComicSans',
+                                        style: GoogleFonts.poppins(
                                           fontSize: 15,
                                           color: Colors.white,
                                           fontStyle: FontStyle.italic,
                                         ),
                                       ),
                                       SizedBox(
-                                        width: 1,
+                                        width: 0.5,
                                       ),
                                       Text(
                                         "Tito's Bar and Club",
-                                        style: TextStyle(
-                                          fontSize: 15,
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 13,
                                           fontWeight: FontWeight.w900,
                                           color: Colors.white,
                                           fontStyle: FontStyle.italic,
@@ -1286,20 +1287,18 @@ class _DashboardPageState extends State<DashboardPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                const Text(
+                                Text(
                                   "GET ",
-                                  style: TextStyle(
-                                    fontFamily: 'ComicSans',
+                                  style: GoogleFonts.poppins(
                                     fontSize: 25,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
                                   ),
                                 ),
-                                const Text(
+                                Text(
                                   "50% OFF",
-                                  style: TextStyle(
+                                  style: GoogleFonts.poppins(
                                     fontSize: 25,
-                                    fontFamily: 'ComicSans',
                                     fontWeight: FontWeight.w900,
                                     color: Colors.white,
                                   ),
@@ -1307,34 +1306,31 @@ class _DashboardPageState extends State<DashboardPage> {
                                 SizedBox(
                                   height: height * 0.005,
                                 ),
-                                const Text(
+                                Text(
                                   "On breakfast specials",
-                                  style: TextStyle(
+                                  style: GoogleFonts.poppins(
                                     fontSize: 15,
-                                    fontFamily: 'ComicSans',
                                     color: Colors.white,
                                   ),
                                 ),
                                 Row(children: [
-                                  const Text(
+                                  Text(
                                     "from",
-                                    style: TextStyle(
+                                    style: GoogleFonts.poppins(
                                       fontSize: 15,
                                       color: Colors.white,
-                                      fontFamily: 'ComicSans',
                                       fontStyle: FontStyle.italic,
                                     ),
                                   ),
                                   SizedBox(
                                     width: width * 0.01,
                                   ),
-                                  const Text(
+                                  Text(
                                     "Starbucks",
-                                    style: TextStyle(
+                                    style: GoogleFonts.poppins(
                                       fontSize: 13,
                                       fontWeight: FontWeight.w900,
                                       color: Colors.white,
-                                      fontFamily: 'ComicSans',
                                       fontStyle: FontStyle.italic,
                                     ),
                                   ),
@@ -1416,10 +1412,9 @@ class _DashboardPageState extends State<DashboardPage> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const Text(
+                              Text(
                                 "Curlies ZuluLand Cottages",
-                                style: TextStyle(
-                                  fontFamily: 'ComicSans',
+                                style: GoogleFonts.poppins(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -1428,9 +1423,9 @@ class _DashboardPageState extends State<DashboardPage> {
                                 children: [
                                   const Icon(Icons.star, color: Colors.yellow),
                                   SizedBox(width: width * 0.01),
-                                  const Text(
+                                  Text(
                                     "4.8",
-                                    style: TextStyle(
+                                    style: GoogleFonts.poppins(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -1439,21 +1434,19 @@ class _DashboardPageState extends State<DashboardPage> {
                               ),
                             ],
                           ),
-                          const Text(
+                          Text(
                             "Monterio Vaddo, Anjuna, Goa 403509",
-                            style: TextStyle(
-                              fontFamily: 'ComicSans',
+                            style: GoogleFonts.poppins(
                               fontSize: 12,
                             ),
                           ),
                           SizedBox(height: height * 0.02),
-                          const Row(
+                          Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
                                 "₹1,200",
-                                style: TextStyle(
-                                  fontFamily: 'ComicSans',
+                                style: GoogleFonts.poppins(
                                   color: Colors.blue,
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold,
@@ -1461,9 +1454,8 @@ class _DashboardPageState extends State<DashboardPage> {
                               ),
                               Text(
                                 "/night",
-                                style: TextStyle(
+                                style: GoogleFonts.poppins(
                                   fontSize: 15,
-                                  fontFamily: 'ComicSans',
                                   color: Colors.grey,
                                 ),
                               ),

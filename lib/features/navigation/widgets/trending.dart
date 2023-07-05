@@ -1,5 +1,6 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../globalVariables.dart';
 import '../../../size_config.dart';
 
@@ -74,8 +75,7 @@ class Trending extends StatelessWidget {
         ),
         Text(
           name,
-          style: TextStyle(
-            fontFamily: 'ComicSans',
+          style: GoogleFonts.poppins(
             fontSize: 11,
             color: Colors.blue,
             fontWeight: FontWeight.w500,
