@@ -1,8 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:goaviralnews/features/navigation/screens/slider.dart';
 import 'package:goaviralnews/globalVariables.dart';
 import 'package:goaviralnews/size_config.dart';
-
 class PhotoGalleryScreen extends StatefulWidget {
   const PhotoGalleryScreen({Key? key}) : super(key: key);
 
@@ -12,14 +13,14 @@ class PhotoGalleryScreen extends StatefulWidget {
 
 class _PhotoGalleryScreenState extends State<PhotoGalleryScreen> {
   final List<String> imageList = [
-    'assets/images/im_gallery1.png',
-    'assets/images/im_gallery1.png',
-    'assets/images/im_gallery1.png',
-    'assets/images/im_gallery1.png',
+    'assets/images/gallery1.png',
+    'assets/images/gallery2.png',
+    'assets/images/gallery3.png',
+    'assets/images/gallery4.png',
+    'assets/images/gallery5.png',
   ];
 
   String selectedAvatar = "assets/icons/Group 42.png"; // Default avatar path
-
 
   @override
   Widget build(BuildContext context) {
@@ -41,25 +42,124 @@ class _PhotoGalleryScreenState extends State<PhotoGalleryScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: width * 0.05,
+                      vertical: height * 0.015,
+                    ),
                     decoration: BoxDecoration(
-                      border: Border.all(
-                        color: const Color(0xFFE8ECF4),
-                        width: 1.0,
+                      borderRadius: BorderRadius.circular(24),
+                      color: Colors.white,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                const ImageIcon(
+                                  AssetImage("assets/icons/instagram.png"),
+                                  color: Colors.pink,
+                                  size: 20,
+                                ),
+                                SizedBox(
+                                  width: width * 0.025,
+                                ),
+                                const Text(
+                                  "Follow us on Instagram",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                    fontSize: 15,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: width * 0.025,
+                                ),
+                                GestureDetector(
+                                  child: Container(
+                                    height: 18,
+                                    width: 30,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: Colors.blue,
+                                    ),
+                                    child: const Center(
+                                      child: Icon(
+                                        Icons.arrow_forward,
+                                        size: 12,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: height * 0.01,
+                            ),
+                            const Text(
+                              "Share your reels with us and attract Discount",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                color: Colors.grey,
+                                fontSize: 10,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  GestureDetector(
+                    child: Container(
+                      padding: const EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.3),
+                            spreadRadius: 1,
+                            blurRadius: 4,
+                            offset: const Offset(0, 3),
+                          ),
+                        ],
                       ),
-                      borderRadius: BorderRadius.circular(16.0),
+                      child: Center(
+                        child: Image.asset("assets/icons/addstory.png",
+                            width: 40, height: 40),
+                      ),
                     ),
-                    child: IconButton(
-                      icon: Image.asset(selectedAvatar),
-                      onPressed: () {},
-                    ),
-                  ),
-                  const Text(
-                    "Galleria",
-                    style: TextStyle(fontWeight: FontWeight.w700, fontSize: 24),
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.notification_add_outlined),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        PageRouteBuilder(
+                          transitionDuration: const Duration(
+                              milliseconds:
+                                  500), // Adjust the duration as needed
+                          pageBuilder: (BuildContext context,
+                              Animation<double> animation,
+                              Animation<double> secondaryAnimation) {
+                            return const SliderPage(); // Replace with your destination page widget
+                          },
+                          transitionsBuilder: (BuildContext context,
+                              Animation<double> animation,
+                              Animation<double> secondaryAnimation,
+                              Widget child) {
+                            return SlideTransition(
+                              position: Tween<Offset>(
+                                begin: const Offset(1.0,
+                                    0.0), // Start the page from the right side of the screen
+                                end: Offset.zero,
+                              ).animate(animation),
+                              child: child,
+                            );
+                          },
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),
@@ -175,49 +275,47 @@ class _PhotoGalleryScreenState extends State<PhotoGalleryScreen> {
               SizedBox(
                 height: height * 0.035,
               ),
-              Container(
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text(
-                          "Hot Locations",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
+              Column(
+                children: [
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Hot Locations",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
                         ),
-                        Text(
-                          "See All",
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                          ),
+                      ),
+                      Text(
+                        "See All",
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
                         ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: height * 0.025,
+                  ),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        Image.asset("assets/images/dashboard.png"),
+                        const SizedBox(
+                          width: 16,
+                        ),
+                        Image.asset("assets/images/dashboard.png"),
+                        const SizedBox(
+                          width: 16,
+                        ),
+                        Image.asset("assets/images/dashboard.png"),
                       ],
                     ),
-                    SizedBox(
-                      height: height * 0.025,
-                    ),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [
-                          Image.asset("assets/images/dashboard.png"),
-                          const SizedBox(
-                            width: 16,
-                          ),
-                          Image.asset("assets/images/dashboard.png"),
-                          const SizedBox(
-                            width: 16,
-                          ),
-                          Image.asset("assets/images/dashboard.png"),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ],
           ),

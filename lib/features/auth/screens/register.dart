@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart'; // Added import for CupertinoAlertDialog
 import 'package:goaviralnews/common/widgets/custom_appbar.dart';
 import 'package:goaviralnews/common/widgets/custom_elevatedbutton.dart';
 import 'package:goaviralnews/globalVariables.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../size_config.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -24,11 +26,106 @@ class _RegisterPageState extends State<RegisterPage> {
   var phone = "";
 
   TextEditingController _countrycode = TextEditingController();
+  String? _otp; // Added variable to hold OTP
 
   @override
   void initState() {
     _countrycode.text = "+91";
     super.initState();
+  }
+
+  Future<void> _showOtpVerificationPopup(BuildContext context) async {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            "OTP Verification",
+            style: GoogleFonts.poppins(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Colors.blue,
+            ),
+          ),
+          content: TextField(
+            onChanged: (value) {
+              setState(() {
+                _otp = value;
+              });
+            },
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(
+              labelText: "Enter OTP",
+              border: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.blue),
+              ),
+            ),
+          ),
+          actions: [
+            Align(
+              alignment: Alignment.center,
+              child: Container(
+                width: 300,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Verify the OTP entered
+                    FirebaseAuth.instance
+                        .signInWithCredential(
+                      PhoneAuthProvider.credential(
+                        verificationId: RegisterPage.verify!,
+                        smsCode: _otp!,
+                      ),
+                    )
+                        .then((credential) {
+                      if (credential.user != null) {
+                        // OTP verification successful
+                        Navigator.pushNamed(
+                          context,
+                          "/create-profile-page",
+                        );
+                      } else {
+                        // OTP verification failed
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text("Invalid OTP. Please try again."),
+                          ),
+                        );
+                      }
+                    }).catchError((error) {
+                      // Error occurred during OTP verification
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text("An error occurred. Please try again."),
+                        ),
+                      );
+                    });
+                  },
+                  child: Text(
+                    "Verify",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.black,
+                  ),
+                ),
+              ),
+            ),
+          ],
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+          backgroundColor: Colors.white,
+          elevation: 5,
+        );
+      },
+    );
   }
 
   @override
@@ -85,29 +182,34 @@ class _RegisterPageState extends State<RegisterPage> {
                             width: width * 0.05,
                           ),
                           SizedBox(
+                            height: height * 0.037,
                             width: width * 0.08,
                             child: TextField(
-                                controller: _countrycode,
-                                decoration: const InputDecoration(
-                                  border: InputBorder.none,
-                                )),
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                              ),
+                              controller: _countrycode,
+                              decoration: const InputDecoration(
+                                border: InputBorder.none,
+                              ),
+                            ),
                           ),
                           Container(
                             height: height * 0.035,
                             width: 1,
                             color: Colors.grey,
                           ),
-                          // Text(
-                          //   "|",
-                          //   style: TextStyle(fontSize: 20, color: Colors.grey),
-                          // ),
-                          SizedBox(width: width * 0.04),
+                          SizedBox(width: width * 0.03),
                           Expanded(
                             child: TextField(
                               onChanged: (value) {
                                 phone = value;
                               },
                               keyboardType: TextInputType.number,
+                              maxLength: 10,
+                              textAlignVertical: TextAlignVertical
+                                  .center, // Center align the text vertically
                               decoration: const InputDecoration(
                                 border: InputBorder.none,
                                 hintText: "Enter Number",
@@ -115,6 +217,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                   fontSize: 16,
                                   fontWeight: FontWeight.w400,
                                 ),
+                                counterText:
+                                    "", // Remove the default character count
                               ),
                             ),
                           ),
@@ -139,11 +243,6 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                             Image.asset("assets/icons/whatsapp.png",
                                 height: 16, width: 16),
-                            // Icon(
-                            //   Icons.change_circle_outlined,
-                            //   size: 16,
-                            //   color: Colors.lightGreenAccent.shade700,
-                            // ),
                             const Text(
                               " Whatsapp?",
                               style: TextStyle(
@@ -242,22 +341,29 @@ class _RegisterPageState extends State<RegisterPage> {
                   title: "Verify Number",
                   router: "/otp-verification-register-page",
                   onPressed: () async {
-                    await FirebaseAuth.instance.verifyPhoneNumber(
-                      phoneNumber: '${_countrycode.text + phone}',
-                      verificationCompleted:
-                          (PhoneAuthCredential credential) {},
-                      verificationFailed: (FirebaseAuthException e) {},
-                      codeSent: (String verificationId, int? resendToken) {
-                        setState(() {
-                          RegisterPage._verify = verificationId;
-                        });
-                        Navigator.pushNamed(
-                          context,
-                          "/otp-verification-page",
-                        );
-                      },
-                      codeAutoRetrievalTimeout: (String verificationId) {},
-                    );
+                    // Perform phone number verification and then show the OTP verification popup
+                    if (phone.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text("Please enter a mobile number"),
+                        ),
+                      );
+                    } else {
+                      await FirebaseAuth.instance.verifyPhoneNumber(
+                        phoneNumber: '${_countrycode.text + phone}',
+                        verificationCompleted:
+                            (PhoneAuthCredential credential) {},
+                        verificationFailed: (FirebaseAuthException e) {},
+                        codeSent: (String verificationId, int? resendToken) {
+                          setState(() {
+                            RegisterPage._verify = verificationId;
+                          });
+                          _showOtpVerificationPopup(
+                              context); // Show OTP verification popup
+                        },
+                        codeAutoRetrievalTimeout: (String verificationId) {},
+                      );
+                    }
                   },
                 ),
               ),

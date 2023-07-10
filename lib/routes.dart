@@ -76,7 +76,7 @@ class _RoutesState extends State {
                   });
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const SearchPage()),
+                    MaterialPageRoute(builder: (context) => SearchPage()),
                   );
                 },
                 icon: const Icon(Icons.search),

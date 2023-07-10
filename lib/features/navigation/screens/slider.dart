@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:goaviralnews/features/navigation/screens/dashboard.dart';
 import 'package:goaviralnews/size_config.dart';
-
 
 class SliderPage extends StatefulWidget {
   const SliderPage({super.key});
@@ -50,9 +50,34 @@ class _SliderPageState extends State<SliderPage> {
                         size: 16,
                       ),
                       onPressed: () {
-                        Navigator.pushNamed(
+                        Navigator.pop(
                           context,
-                          "/dashboard-page",
+                          PageRouteBuilder(
+                            transitionDuration:
+                                const Duration(milliseconds: 500),
+                            pageBuilder: (BuildContext context,
+                                Animation<double> animation,
+                                Animation<double> secondaryAnimation) {
+                              return const DashboardPage();
+                            },
+                            transitionsBuilder: (BuildContext context,
+                                Animation<double> animation,
+                                Animation<double> secondaryAnimation,
+                                Widget child) {
+                              return SlideTransition(
+                                position: Tween<Offset>(
+                                  begin: const Offset(-1.0,
+                                      0.0), // Start the page from the right side of the screen
+                                  end: Offset.zero,
+                                ).animate(CurvedAnimation(
+                                  parent: animation,
+                                  curve: Curves
+                                      .easeOut, // Change the curve as needed
+                                )),
+                                child: child,
+                              );
+                            },
+                          ),
                         );
                       },
                     ),

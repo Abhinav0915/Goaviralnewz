@@ -1,7 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:goaviralnews/features/navigation/screens/dashboard.dart';
+
 import 'package:goaviralnews/router.dart';
-import 'features/auth/screens/profile.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       onGenerateRoute: (settings) => generateRoute(settings),
-      home: const CreateProfilePage(),
+      home: DashboardPage(),
       debugShowCheckedModeBanner: false,
     );
   }

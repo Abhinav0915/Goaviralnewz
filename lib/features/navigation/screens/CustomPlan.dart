@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:goaviralnews/globalVariables.dart';
 import '../../../size_config.dart';
 
-
 class CustomTravellingPlan extends StatefulWidget {
   const CustomTravellingPlan({Key? key});
 
@@ -14,7 +13,7 @@ class CustomTravellingPlan extends StatefulWidget {
 }
 
 class _CustomTravellingPlanState extends State<CustomTravellingPlan> {
-  double _visitorCount = 2;
+  // double _visitorCount = 2;
   double _budgetRange = 1000;
 
   String fromDateText = 'From';
@@ -47,6 +46,12 @@ class _CustomTravellingPlanState extends State<CustomTravellingPlan> {
   ];
   List<String> location = ['South Goa', 'North Goa', 'Both'];
   List<String> selectedLocation = []; // New list for selected location
+  List<String> TourType = [
+    'Solo',
+    'Couple',
+    'Group',
+    'Group',
+  ];
 
   Future pickDateRange() async {
     final screenHeight = MediaQuery.of(context).size.height;
@@ -354,52 +359,117 @@ class _CustomTravellingPlanState extends State<CustomTravellingPlan> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text(
-                    "Number of Visitors:",
+                    "Type: ",
                     style: TextStyle(
                       fontSize: 15,
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Text(
-                    "${_visitorCount.toInt()} Visitors",
-                    style: const TextStyle(
-                      fontSize: 14,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  // Text(
+                  //   "${_visitorCount.toInt()} Visitors",
+                  //   style: const TextStyle(
+                  //     fontSize: 14,
+                  //     color: Colors.black,
+                  //     fontWeight: FontWeight.bold,
+                  //   ),
+                  // ),
+                ],
+              ),
+              // Column(
+              //   crossAxisAlignment: CrossAxisAlignment.start,
+              //   children: [
+              //     Row(
+              //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //       children: [
+              //         Container(
+              //           padding: const EdgeInsets.only(left: 0),
+              //           width: width * 0.7,
+              //           child: Slider(
+              //             min: 1,
+              //             max: 10,
+              //             divisions: 9,
+              //             value: _visitorCount,
+              //             onChanged: (double value) {
+              //               setState(() {
+              //                 _visitorCount = value;
+              //               });
+              //             },
+              //           ),
+              //         ),
+              //         const Text("Adults",
+              //             style: TextStyle(
+              //               fontSize: 12,
+              //               color: Colors.grey,
+              //             )),
+              //       ],
+              //     )
+              //   ],
+              // ),
+              SizedBox(
+                height: height * 0.005,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Wrap(
+                    spacing: 1,
+                    runSpacing: 5,
+                    children: TourType.map((tag) {
+                      bool isSelected = selectedTags.contains(tag);
+
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            if (isSelected) {
+                              selectedTags.remove(tag);
+                            } else {
+                              if (selectedTags.length < 5) {
+                                selectedTags.add(tag);
+                              }
+                            }
+                          });
+                        },
+                        child: Container(
+                          child: Column(
+                            children: [
+                              Card(
+                                elevation: 5,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Container(
+                                  width: 70,
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: isSelected
+                                        ? Colors.blue
+                                        : Colors.transparent,
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      tag,
+                                      style: TextStyle(
+                                        fontSize: 11,
+                                        color: isSelected
+                                            ? Colors.white
+                                            : Colors.black,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    }).toList(),
                   ),
                 ],
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.only(left: 0),
-                        width: width * 0.7,
-                        child: Slider(
-                          min: 1,
-                          max: 10,
-                          divisions: 9,
-                          value: _visitorCount,
-                          onChanged: (double value) {
-                            setState(() {
-                              _visitorCount = value;
-                            });
-                          },
-                        ),
-                      ),
-                      const Text("Adults",
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.grey,
-                          )),
-                    ],
-                  )
-                ],
+              SizedBox(
+                height: height * 0.02,
               ),
               Column(
                 children: [
@@ -486,48 +556,65 @@ class _CustomTravellingPlanState extends State<CustomTravellingPlan> {
                     "Budget Range:",
                     style: TextStyle(fontSize: 12, color: Colors.black),
                   ),
-                  Text(
-                    "₹ ${_budgetRange.toInt()} / Day",
-                    style: const TextStyle(
-                      fontSize: 12,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  Row(
+                    children: [
+                      Text(
+                        "₹ ${_budgetRange.toInt()} / Day",
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(
+                        width: width * 0.02,
+                      ),
+                      Text("Per Person",
+                          style: const TextStyle(
+                            fontSize: 9,
+                            color: Colors.black,
+                          )),
+                    ],
                   ),
                 ],
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        padding: const EdgeInsets.only(left: 0),
-                        width: width * 0.7,
-                        child: Slider(
-                          min: 1000,
-                          max: 50000,
-                          divisions: 50,
-                          value: _budgetRange,
-                          onChanged: (double value) {
-                            setState(() {
-                              _budgetRange = value;
-                            });
-                          },
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.only(left: 0),
+                            width: width * 0.7,
+                            child: Slider(
+                              min: 1000,
+                              max: 50000,
+                              divisions: 50,
+                              value: _budgetRange,
+                              onChanged: (double value) {
+                                setState(() {
+                                  _budgetRange = value;
+                                });
+                              },
+                            ),
+                          ),
+                          const Text("₹18,000",
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.grey,
+                              )),
+                        ],
                       ),
-                      const Text("₹18,000",
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.grey,
-                          )),
                     ],
                   )
                 ],
               ),
               SizedBox(
-                height: height * 0.1,
+                height: height * 0.06,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

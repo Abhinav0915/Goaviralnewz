@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:goaviralnews/common/widgets/custom_appbar.dart';
-import 'package:goaviralnews/common/widgets/custom_elevatedbutton.dart';
+
 import 'package:goaviralnews/globalVariables.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import '../../../size_config.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -18,75 +19,15 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   String phoneNo = '';
-  final _auth = FirebaseAuth.instance;
+  // final _auth = FirebaseAuth.instance;
   var verificationId = ''.obs;
 
-  // Future<void> verifyPhoneNumber() async {
-  //   FirebaseAuth auth = FirebaseAuth.instance;
-
-  //   await auth.verifyPhoneNumber(
-  //     phoneNumber: phoneNumber,
-  //     timeout: const Duration(seconds: 60),
-  //     verificationCompleted: (PhoneAuthCredential credential) {
-  //       // Auto-retrieval of verification code completed.
-  //       // You can sign in the user here using `credential`.
-  //     },
-  //     verificationFailed: (FirebaseAuthException e) {
-  //       // Handle verification failure.
-  //       print('Verification failed: ${e.message}');
-  //     },
-  //     codeSent: (String verificationId, int? resendToken) {
-  //       // Navigate to OTP verification page passing the verification ID
-  //       Navigator.pushNamed(
-  //         context,
-  //         '/otp-verification-page',
-  //         arguments: verificationId,
-  //       );
-  //     },
-  //     codeAutoRetrievalTimeout: (String verificationId) {
-  //       // Auto-retrieval timeout callback
-  //       // You can handle the timeout scenario here.
-  //     },
-  //   );
-  // }
-
-  Future<void> phoneAuthentication(String phoneNo) async {
-    await _auth.verifyPhoneNumber(
-      phoneNumber: phoneNo,
-      verificationCompleted: (credential) async {
-        await _auth.signInWithCredential(credential);
-      },
-      verificationFailed: (e) {
-        if (e.code == 'invalid-phone-number') {
-          Get.snackbar("Error", 'The provided phone number is not valid.');
-        } else {
-          Get.snackbar("Error", "Something went wrong");
-        }
-      },
-      codeSent: (verificationId, resendToken) {
-        this.verificationId.value = verificationId;
-      },
-      codeAutoRetrievalTimeout: (verificationId) {
-        this.verificationId.value = verificationId;
-      },
-    );
-  }
-
-  Future<bool> verifyOTP(String otp) async {
-    var credentials = await _auth.signInWithCredential(
-      PhoneAuthProvider.credential(
-        verificationId: verificationId.value,
-        smsCode: otp,
-      ),
-    );
-    //redirect to dashboard
-    if (credentials.user != null) {
-      Get.offNamed("/dashboard-page");
-      return true;
-    } else {
-      Get.snackbar("Error", "Invalid OTP");
-      return false;
-    }
+  Future<bool> checkIfUserExists(String phoneNo) async {
+    var snapshot = await FirebaseFirestore.instance
+        .collection('users')
+        .where('phone', isEqualTo: phoneNo)
+        .get();
+    return snapshot.docs.isNotEmpty;
   }
 
   @override
@@ -154,15 +95,21 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
               ),
-              Container(
-                child: CustomElevatedButton(
-                  title: "Verify Number",
-                  router: "/otp-verification-page",
-                  onPressed: () async {
-                    await phoneAuthentication(phoneNo);
-                  },
-                ),
-              ),
+              ElevatedButton(
+                  onPressed: () async {},
+                  child: Center(
+                    child: Text("Login"),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.black,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    minimumSize: Size(
+                      width * 0.9,
+                      height * 0.05,
+                    ),
+                  )),
             ],
           ),
         ),

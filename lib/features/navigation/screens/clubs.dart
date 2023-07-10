@@ -20,6 +20,8 @@ class ClubsPage extends StatefulWidget {
 
 class _ClubsPageState extends State<ClubsPage> {
   int _currentIndex = 0;
+  bool isFavorite = false;
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -30,88 +32,77 @@ class _ClubsPageState extends State<ClubsPage> {
       backgroundColor: GlobalVariables.backgroundColor,
       bottomNavigationBar: Container(
         height: 80,
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.only(
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.only(
             topLeft: Radius.circular(25.0),
             topRight: Radius.circular(25.0),
-          ),
-          border: Border.all(
-            color: const Color(0xFFE8ECF4),
-            width: 1.0,
           ),
         ),
-        child: ClipRRect(
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(25.0),
-            topRight: Radius.circular(25.0),
-          ),
-          child: BottomNavigationBar(
-            selectedLabelStyle: const TextStyle(
-              fontWeight: FontWeight.bold,
+        child: Container(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(25.0),
+              topRight: Radius.circular(25.0),
             ),
-            currentIndex: _currentIndex,
-            selectedItemColor: Colors.blue,
-            unselectedItemColor: Colors.grey,
-            showUnselectedLabels: false,
-            type: BottomNavigationBarType.fixed,
-            iconSize: 25,
-            onTap: (int index) {
-              setState(() {
-                _currentIndex = index;
-              });
-
-              switch (index) {
-                case 0:
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              IconButton(
+                onPressed: () {
+                  setState(() {
+                    _currentIndex = 0;
+                  });
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => const DashboardPage()),
                   );
-                  break;
-                case 1:
+                },
+                icon: const Icon(Icons.home),
+                color: _currentIndex == 0 ? Colors.blue : Colors.grey,
+              ),
+              IconButton(
+                onPressed: () {
+                  setState(() {
+                    _currentIndex = 1;
+                  });
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const SearchPage()),
+                    MaterialPageRoute(builder: (context) =>  SearchPage()),
                   );
-                  break;
-                case 2:
+                },
+                icon: const Icon(Icons.search),
+                color: _currentIndex == 1 ? Colors.blue : Colors.grey,
+              ),
+              IconButton(
+                onPressed: () {
+                  setState(() {
+                    _currentIndex = 2;
+                  });
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const PhotoGalleryScreen()),
+                      builder: (context) => const PhotoGalleryScreen(),
+                    ),
                   );
-                  break;
-                case 3:
+                },
+                icon: const Icon(Icons.bookmark),
+                color: _currentIndex == 2 ? Colors.blue : Colors.grey,
+              ),
+              IconButton(
+                onPressed: () {
+                  setState(() {
+                    _currentIndex = 3;
+                  });
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const SliderPage()),
                   );
-                  break;
-
-                default:
-                // Handle invalid index
-              }
-            },
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home_rounded),
-                label: 'Dasboard',
-                backgroundColor: Colors.blue,
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.search),
-                label: 'Search',
-                backgroundColor: Colors.blue,
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.bookmark),
-                label: 'Bookmarked',
-                backgroundColor: Colors.blue,
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.person_2),
-                label: 'Profile',
-                backgroundColor: Colors.blue,
+                },
+                icon: const Icon(Icons.person_2),
+                color: _currentIndex == 3 ? Colors.blue : Colors.grey,
               ),
             ],
           ),
@@ -193,370 +184,330 @@ class _ClubsPageState extends State<ClubsPage> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              height: 180,
-                              width: 120,
-                              padding: EdgeInsets.symmetric(
-                                horizontal: width * 0.04,
-                                vertical: height * 0.005,
-                              ),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                image: const DecorationImage(
-                                  image: AssetImage("assets/images/club1.jpg"),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      const Text(
-                                        "New",
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      const Text(
-                                        "Party",
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w900,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      const Text(
-                                        "Placeee",
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w900,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      const Text(
-                                        "Entry: INR 500",
-                                        style: TextStyle(
-                                          fontSize: 10,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: height * 0.015,
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
+                        Container(
+                          height: 190,
+                          width: 130,
+                          padding: EdgeInsets.only(
+                            left: width * 0.025,
+                            top: height * 0.01,
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            image: const DecorationImage(
+                              image: AssetImage("assets/images/club1.jpg"),
+                              fit: BoxFit.cover,
                             ),
-                            SizedBox(
-                              height: height * 0.015,
-                            ),
-                            Column(
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const Text(
-                                    "Sinq Night Club",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: height * 0.005,
+                                  Row(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          Container(
+                                            height: 20,
+                                            width: 70,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              color: Colors.white,
+                                            ),
+                                            child: const Center(
+                                              child: Text(
+                                                "#mostvisited",
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 10,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: width * 0.045,
+                                          ),
+                                          const Icon(Icons.favorite,
+                                              color: Colors.red),
+                                        ],
+                                      )
+                                    ],
                                   ),
                                   Row(
                                     children: [
-                                      const Icon(
-                                        CupertinoIcons.star_circle,
-                                        size: 13,
-                                        color: Colors.blue,
-                                      ),
-                                      SizedBox(
-                                        width: width * 0.01,
-                                      ),
-                                      const Text("4.1",
-                                          style: TextStyle(
-                                              fontSize: 13,
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold)),
-                                      SizedBox(
-                                        width: width * 0.01,
-                                      ),
-                                      const Text("*"),
-                                      SizedBox(
-                                        width: width * 0.01,
-                                      ),
-                                      const Text("21 mins",
-                                          style: TextStyle(
-                                              fontSize: 13,
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold)),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: height * 0.005,
-                                  ),
-                                  const Text("#partymoodypeople",
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        color: Color.fromARGB(255, 46, 46, 46),
-                                      )),
-                                ]),
-                          ],
-                        ),
-                        SizedBox(
-                          width: width * 0.055,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              height: 180,
-                              width: 120,
-                              padding: EdgeInsets.symmetric(
-                                horizontal: width * 0.04,
-                                vertical: height * 0.005,
-                              ),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                image: const DecorationImage(
-                                  image: AssetImage("assets/images/club2.png"),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      const Text(
-                                        "Apna",
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      const Text(
-                                        "Fooding",
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w900,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      const Text(
-                                        "Adda",
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w900,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      const Text(
-                                        "Entry: INR 1,500",
-                                        style: TextStyle(
-                                          fontSize: 10,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: height * 0.015,
-                                      ),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          const Text(
+                                            "New",
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          const Text(
+                                            "Party",
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w900,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          const Text(
+                                            "Placeee",
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w900,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          const Text(
+                                            "Entry: INR 500",
+                                            style: TextStyle(
+                                              fontSize: 10,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: height * 0.015,
+                                          ),
+                                        ],
+                                      )
                                     ],
                                   ),
                                 ],
                               ),
-                            ),
-                            SizedBox(
-                              height: height * 0.015,
-                            ),
-                            const Text(
-                              "Club Titos",
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            SizedBox(
-                              height: height * 0.005,
-                            ),
-                            Row(
-                              children: [
-                                const Icon(
-                                  CupertinoIcons.star_circle,
-                                  size: 13,
-                                  color: Colors.blue,
-                                ),
-                                SizedBox(
-                                  width: width * 0.01,
-                                ),
-                                const Text("3.8",
-                                    style: TextStyle(
-                                        fontSize: 13,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold)),
-                                SizedBox(
-                                  width: width * 0.01,
-                                ),
-                                const Text("*"),
-                                SizedBox(
-                                  width: width * 0.01,
-                                ),
-                                const Text("37 mins",
-                                    style: TextStyle(
-                                        fontSize: 13,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold)),
-                              ],
-                            ),
-                            SizedBox(
-                              height: height * 0.005,
-                            ),
-                            const Text("#hungryforfoodieee",
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  color: Color.fromARGB(255, 46, 46, 46),
-                                )),
-                          ],
+                            ],
+                          ),
                         ),
                         SizedBox(
-                          width: width * 0.055,
+                          width: width * 0.035,
                         ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              height: 180,
-                              width: 120,
-                              padding: EdgeInsets.symmetric(
-                                horizontal: width * 0.04,
-                                vertical: height * 0.005,
-                              ),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                image: const DecorationImage(
-                                  image: AssetImage("assets/images/club3.jpg"),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
+                        Container(
+                          height: 190,
+                          width: 130,
+                          padding: EdgeInsets.only(
+                            left: width * 0.025,
+                            top: height * 0.01,
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            image: const DecorationImage(
+                              image: AssetImage("assets/images/club2.png"),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                  Row(
                                     children: [
-                                      const Text(
-                                        "Best",
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      const Text(
-                                        "Beer",
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w900,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      const Text(
-                                        "Store",
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w900,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      const Text(
-                                        "Entry: Free",
-                                        style: TextStyle(
-                                          fontSize: 10,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: height * 0.015,
-                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          Container(
+                                            height: 20,
+                                            width: 70,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              color: Colors.white,
+                                            ),
+                                            child: const Center(
+                                              child: Text(
+                                                "#mostvisited",
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 10,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          // SizedBox(
+                                          //   width: width * 0.045,
+                                          // ),
+                                          // const Icon(Icons.favorite,
+                                          //     color: Colors.red),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          const Text(
+                                            "Apna",
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          const Text(
+                                            "Fooding",
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w900,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          const Text(
+                                            "Adda",
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w900,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          const Text(
+                                            "Entry: INR 1,500",
+                                            style: TextStyle(
+                                              fontSize: 10,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: height * 0.015,
+                                          ),
+                                        ],
+                                      )
                                     ],
                                   ),
                                 ],
                               ),
-                            ),
-                            SizedBox(
-                              height: height * 0.015,
-                            ),
-                            const Text(
-                              "Hammerzz Nightclub",
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            SizedBox(
-                              height: height * 0.005,
-                            ),
-                            Row(
-                              children: [
-                                const Icon(
-                                  CupertinoIcons.star_circle,
-                                  size: 13,
-                                  color: Colors.blue,
-                                ),
-                                SizedBox(
-                                  width: width * 0.01,
-                                ),
-                                const Text("4.9",
-                                    style: TextStyle(
-                                        fontSize: 13,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold)),
-                                SizedBox(
-                                  width: width * 0.01,
-                                ),
-                                const Text("*"),
-                                SizedBox(
-                                  width: width * 0.01,
-                                ),
-                                const Text("19 mins",
-                                    style: TextStyle(
-                                        fontSize: 13,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold)),
-                              ],
-                            ),
-                            SizedBox(
-                              height: height * 0.005,
-                            ),
-                            const Text("#happyhoursarea",
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  color: Color.fromARGB(255, 46, 46, 46),
-                                )),
-                          ],
+                            ],
+                          ),
                         ),
                         SizedBox(
-                          width: width * 0.055,
+                          width: width * 0.015,
+                        ),
+                        Container(
+                          height: 190,
+                          width: 130,
+                          padding: EdgeInsets.only(
+                            left: width * 0.025,
+                            top: height * 0.01,
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            image: const DecorationImage(
+                              image: AssetImage("assets/images/club3.jpg"),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          Container(
+                                            height: 20,
+                                            width: 70,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              color: Colors.white,
+                                            ),
+                                            child: const Center(
+                                              child: Text(
+                                                "#mostvisited",
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 10,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          // SizedBox(
+                                          //   width: width * 0.045,
+                                          // ),
+                                          // const Icon(Icons.favorite,
+                                          //     color: Colors.red),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          const Text(
+                                            "Best",
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          const Text(
+                                            "Beer",
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w900,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          const Text(
+                                            "Store",
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w900,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          const Text(
+                                            "Entry: Free",
+                                            style: TextStyle(
+                                              fontSize: 10,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: height * 0.015,
+                                          ),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ]),
                 ),
-                SizedBox(height: height * 0.02),
+                SizedBox(height: height * 0.03),
                 SingleChildScrollView(
                   padding: EdgeInsets.only(left: width * 0.055),
                   scrollDirection: Axis.horizontal,
@@ -704,343 +655,454 @@ class _ClubsPageState extends State<ClubsPage> {
                 SizedBox(
                   height: height * 0.02,
                 ),
-                GestureDetector(
-                  onTap: () {
-                    showModalBottomSheet(
-                        isScrollControlled: true,
-                        context: context,
-                        builder: (BuildContext context) {
-                          return ClipRRect(
-                            borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(20.0),
-                              topRight: Radius.circular(20.0),
-                            ),
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(20.0),
-                                  topRight: Radius.circular(20.0),
-                                ),
-                                color: Colors.transparent,
-                              ),
-                              height: MediaQuery.of(context).size.height * 0.75,
-                              child: const ClubDetailsPage(),
-                            ),
-                          );
-                        });
-                  },
-                  child: Card(
-                    elevation: 6,
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 10, bottom: 10, top: 10),
-                          child: Container(
-                            width: 90,
-                            height: 90,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              image: const DecorationImage(
-                                image: AssetImage("assets/images/card1.jpg"),
-                                fit: BoxFit.cover,
-                              ),
+                Card(
+                  elevation: 6,
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 10, bottom: 10, top: 10),
+                        child: Container(
+                          width: 90,
+                          height: 90,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            image: const DecorationImage(
+                              image: AssetImage("assets/images/card1.jpg"),
+                              fit: BoxFit.cover,
                             ),
                           ),
                         ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.all(15),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    const Text(
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(15),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      showModalBottomSheet(
+                                          backgroundColor: Colors.transparent,
+                                          isScrollControlled: true,
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return ClipRRect(
+                                              borderRadius:
+                                                  const BorderRadius.only(
+                                                topLeft: Radius.circular(20.0),
+                                                topRight: Radius.circular(20.0),
+                                              ),
+                                              child: Container(
+                                                decoration: const BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(20.0),
+                                                    topRight:
+                                                        Radius.circular(20.0),
+                                                  ),
+                                                  color: Colors.transparent,
+                                                ),
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.75,
+                                                child: const ClubDetailsPage(),
+                                              ),
+                                            );
+                                          });
+                                    },
+                                    child: const Text(
                                       "Bang Bang Club",
                                       style: TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    Row(
-                                      children: [
-                                        Container(
-                                          height: 20,
-                                          width: 25,
-                                          padding: const EdgeInsets.all(2),
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                            color: Colors.black,
-                                          ),
-                                          child: const Icon(
-                                            CupertinoIcons.hand_thumbsup_fill,
-                                            color: Colors.white,
-                                            size: 10,
-                                          ),
-                                        ),
-                                        SizedBox(width: width * 0.025),
-                                        const Text(
-                                          "Stag",
-                                          style: TextStyle(
-                                            color: Colors.green,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(height: height * 0.005),
-                                Row(
-                                  children: [
-                                    Row(
-                                      children: [
-                                        const Icon(
-                                          Icons.star,
-                                          color: Colors.yellow,
-                                        ),
-                                        SizedBox(width: width * 0.01),
-                                        const Text(
-                                          "3.8",
-                                          style: TextStyle(
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(width: width * 0.1),
-                                    Row(
-                                      children: [
-                                        const Icon(
-                                          CupertinoIcons.star_circle,
-                                          size: 15,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Container(
+                                        height: 20,
+                                        width: 65,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
                                           color: Colors.blue,
                                         ),
-                                        SizedBox(width: width * 0.01),
-                                        const Text("4.1",
-                                            style: TextStyle(
-                                                fontSize: 13,
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold)),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(height: height * 0.015),
-                                const Row(children: [
-                                  Text(
-                                    "Food Type: ",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    "Coastal Food | Continental Food Club",
-                                    style: TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ]),
-                                SizedBox(height: height * 0.005),
-                                const Row(
-                                  children: [
-                                    Text(
-                                      "#Trance",
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontStyle: FontStyle.italic,
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.bold,
+                                        child: const Center(
+                                          child: Text("Bollywood",
+                                              style: TextStyle(
+                                                  fontSize: 10,
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold)),
+                                        ),
                                       ),
+                                      SizedBox(width: width * 0.025),
+                                      GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            isFavorite = !isFavorite;
+                                          });
+                                        },
+                                        child: Icon(
+                                          isFavorite
+                                              ? Icons.favorite
+                                              : Icons.favorite_border,
+                                          color: isFavorite ? Colors.red : null,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              const Row(
+                                children: [
+                                  Text(
+                                    "Panaji, Goa . 12KM",
+                                    style: TextStyle(
+                                      fontSize: 10,
+                                      color: Colors.grey,
+                                      fontWeight: FontWeight.bold,
                                     ),
-                                  ],
-                                )
-                              ],
-                            ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: height * 0.005),
+                              Row(children: [
+                                Image.asset("assets/icons/google.png",
+                                    height: 10, width: 10),
+                                SizedBox(width: width * 0.015),
+                                const Text(
+                                  "3.8",
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(width: width * 0.035),
+                                const Icon(
+                                  CupertinoIcons.star_circle,
+                                  size: 13,
+                                  color: Colors.blue,
+                                ),
+                                SizedBox(width: width * 0.015),
+                                const Text("4.1",
+                                    style: TextStyle(
+                                      fontSize: 10,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                    )),
+                                SizedBox(width: width * 0.035),
+                                const Icon(
+                                  CupertinoIcons.ticket,
+                                  color: Colors.blue,
+                                  size: 15,
+                                ),
+                                SizedBox(width: width * 0.015),
+                                const Text(
+                                  "Free",
+                                  style: TextStyle(
+                                      fontSize: 10,
+                                      color: Colors.blue,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ]),
+                              SizedBox(height: height * 0.005),
+                              Row(children: [
+                                Image.asset("assets/icons/calendar.png",
+                                    height: 10, width: 10),
+                                SizedBox(width: width * 0.015),
+                                const Text(
+                                  "Upcoming Event: 12 PM",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
+                                    fontStyle: FontStyle.italic,
+                                  ),
+                                ),
+                              ]),
+                              SizedBox(height: height * 0.005),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      const Text(
+                                        "#Trance",
+                                        style: TextStyle(
+                                          color: Colors.grey,
+                                          fontStyle: FontStyle.italic,
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      SizedBox(width: width * 0.015),
+                                      const Text(
+                                        "#Happyhours",
+                                        style: TextStyle(
+                                          color: Colors.grey,
+                                          fontStyle: FontStyle.italic,
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      SizedBox(width: width * 0.015),
+                                      const Text(
+                                        "#DJsets",
+                                        style: TextStyle(
+                                          color: Colors.grey,
+                                          fontStyle: FontStyle.italic,
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const Row(
+                                    children: [
+                                      Text(
+                                        "Visit Now",
+                                        style: TextStyle(
+                                          color:
+                                              Color.fromARGB(255, 10, 61, 12),
+                                          decoration: TextDecoration.underline,
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              )
+                            ],
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
                 SizedBox(height: height * 0.02),
-                GestureDetector(
-                  onTap: () {
-                    showModalBottomSheet(
-                        isScrollControlled: true,
-                        context: context,
-                        builder: (BuildContext context) {
-                          return ClipRRect(
-                            borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(20.0),
-                              topRight: Radius.circular(20.0),
-                            ),
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(20.0),
-                                  topRight: Radius.circular(20.0),
-                                ),
-                                color: Colors.transparent,
-                              ),
-                              height: MediaQuery.of(context).size.height * 0.75,
-                              child: const ClubDetailsPage(),
-                            ),
-                          );
-                        });
-                  },
-                  child: Card(
-                    elevation: 6,
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 10, bottom: 10, top: 10),
-                          child: Container(
-                            width: 90,
-                            height: 90,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              image: const DecorationImage(
-                                image: AssetImage("assets/images/card2.jpg"),
-                                fit: BoxFit.cover,
-                              ),
+                Card(
+                  elevation: 6,
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 10, bottom: 10, top: 10),
+                        child: Container(
+                          width: 90,
+                          height: 90,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            image: const DecorationImage(
+                              image: AssetImage("assets/images/card2.jpg"),
+                              fit: BoxFit.cover,
                             ),
                           ),
                         ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.all(15),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    const Text(
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(15),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      showModalBottomSheet(
+                                          backgroundColor: Colors.transparent,
+                                          isScrollControlled: true,
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return ClipRRect(
+                                              borderRadius:
+                                                  const BorderRadius.only(
+                                                topLeft: Radius.circular(20.0),
+                                                topRight: Radius.circular(20.0),
+                                              ),
+                                              child: Container(
+                                                decoration: const BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(20.0),
+                                                    topRight:
+                                                        Radius.circular(20.0),
+                                                  ),
+                                                  color: Colors.transparent,
+                                                ),
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.75,
+                                                child: const ClubDetailsPage(),
+                                              ),
+                                            );
+                                          });
+                                    },
+                                    child: const Text(
                                       "Bang Bang Club",
                                       style: TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    Row(
-                                      children: [
-                                        Container(
-                                          height: 20,
-                                          width: 25,
-                                          padding: const EdgeInsets.all(2),
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                            color: Colors.black,
-                                          ),
-                                          child: const Icon(
-                                            CupertinoIcons.hand_thumbsdown_fill,
-                                            color: Colors.white,
-                                            size: 10,
-                                          ),
-                                        ),
-                                        SizedBox(width: width * 0.025),
-                                        const Text(
-                                          "Nope",
-                                          style: TextStyle(
-                                            color: Colors.red,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(height: height * 0.005),
-                                Row(
-                                  children: [
-                                    Row(
-                                      children: [
-                                        const Icon(
-                                          Icons.star,
-                                          color: Colors.yellow,
-                                        ),
-                                        SizedBox(width: width * 0.01),
-                                        const Text(
-                                          "3.8",
-                                          style: TextStyle(
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(width: width * 0.1),
-                                    Row(
-                                      children: [
-                                        const Icon(
-                                          CupertinoIcons.star_circle,
-                                          size: 15,
-                                          color: Colors.blue,
-                                        ),
-                                        SizedBox(width: width * 0.01),
-                                        const Text("4.1",
-                                            style: TextStyle(
-                                                fontSize: 13,
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold)),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(height: height * 0.015),
-                                const Row(children: [
-                                  Text(
-                                    "Food Type: ",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.bold,
-                                    ),
                                   ),
-                                  Text(
-                                    "Coastal Food | Continental Food Club",
-                                    style: TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ]),
-                                SizedBox(height: height * 0.005),
-                                const Row(
-                                  children: [
-                                    Text(
-                                      "#Bollywood",
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontStyle: FontStyle.italic,
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.bold,
+                                  Row(
+                                    children: [
+                                      Container(
+                                        height: 20,
+                                        width: 65,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          color: Colors.purple,
+                                        ),
+                                        child: const Center(
+                                          child: Text("Trance",
+                                              style: TextStyle(
+                                                  fontSize: 10,
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold)),
+                                        ),
                                       ),
+                                      SizedBox(width: width * 0.025),
+                                      const Icon(
+                                        Icons.favorite_border,
+                                        size: 30,
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              const Row(
+                                children: [
+                                  Text(
+                                    "Panaji, Goa . 12KM",
+                                    style: TextStyle(
+                                      fontSize: 10,
+                                      color: Colors.grey,
+                                      fontWeight: FontWeight.bold,
                                     ),
-                                  ],
-                                )
-                              ],
-                            ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: height * 0.005),
+                              Row(children: [
+                                Image.asset("assets/icons/google.png",
+                                    height: 10, width: 10),
+                                SizedBox(width: width * 0.015),
+                                const Text(
+                                  "3.8",
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(width: width * 0.035),
+                                const Icon(
+                                  CupertinoIcons.star_circle,
+                                  size: 13,
+                                  color: Colors.blue,
+                                ),
+                                SizedBox(width: width * 0.015),
+                                const Text("4.1",
+                                    style: TextStyle(
+                                      fontSize: 10,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                    )),
+                                SizedBox(width: width * 0.035),
+                                const Icon(
+                                  CupertinoIcons.ticket,
+                                  color: Colors.blue,
+                                  size: 15,
+                                ),
+                                SizedBox(width: width * 0.015),
+                                const Text(
+                                  "Free",
+                                  style: TextStyle(
+                                      fontSize: 10,
+                                      color: Colors.blue,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ]),
+                              SizedBox(height: height * 0.005),
+                              Row(children: [
+                                Image.asset("assets/icons/calendar.png",
+                                    height: 10, width: 10),
+                                SizedBox(width: width * 0.015),
+                                const Text(
+                                  "Upcoming Event: 12 PM",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
+                                    fontStyle: FontStyle.italic,
+                                  ),
+                                ),
+                              ]),
+                              SizedBox(height: height * 0.005),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      const Text(
+                                        "#PartyAnimals",
+                                        style: TextStyle(
+                                          color: Colors.grey,
+                                          fontStyle: FontStyle.italic,
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      SizedBox(width: width * 0.015),
+                                      const Text(
+                                        "#Happyhours",
+                                        style: TextStyle(
+                                          color: Colors.grey,
+                                          fontStyle: FontStyle.italic,
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const Row(
+                                    children: [
+                                      Text(
+                                        "Visit Now",
+                                        style: TextStyle(
+                                          color:
+                                              Color.fromARGB(255, 10, 61, 12),
+                                          decoration: TextDecoration.underline,
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              )
+                            ],
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ],

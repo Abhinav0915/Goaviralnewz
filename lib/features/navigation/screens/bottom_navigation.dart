@@ -42,7 +42,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         // Navigate to the Search screen
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const SearchPage()),
+          MaterialPageRoute(builder: (context) =>  SearchPage()),
         );
         break;
       case '/bookmarked':
