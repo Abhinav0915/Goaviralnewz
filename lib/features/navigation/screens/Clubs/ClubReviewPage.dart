@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
-class PhotoPage extends StatefulWidget {
-  const PhotoPage({super.key});
+class ReviewPage extends StatefulWidget {
+  const ReviewPage({super.key});
 
   @override
-  State<PhotoPage> createState() => _PhotoPageState();
+  State<ReviewPage> createState() => _ReviewPageState();
 }
 
-class _PhotoPageState extends State<PhotoPage> {
+class _ReviewPageState extends State<ReviewPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(children: [
           Row(
-            children: [Text("Overview Page")],
+            children: [Text("Review Page")],
           )
         ]),
       ),

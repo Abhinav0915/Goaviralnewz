@@ -1,24 +1,30 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:goaviralnews/features/navigation/screens/OverviewPage.dart';
-import 'package:goaviralnews/features/navigation/screens/PhotoPage.dart';
-import 'package:goaviralnews/features/navigation/screens/direction.dart';
-import 'package:goaviralnews/features/navigation/screens/review.dart';
+import 'package:goaviralnews/features/navigation/screens/Clubs/ClubOverviewPage.dart';
+import 'package:goaviralnews/features/navigation/screens/Clubs/ClubPhotoPage.dart';
+import 'package:goaviralnews/features/navigation/screens/Clubs/ClubDirectionPage.dart';
+import 'package:goaviralnews/features/navigation/screens/Clubs/ClubReviewPage.dart';
+import 'package:goaviralnews/features/navigation/screens/Stay/HotelOverviewPage.dart';
 
-class ClubDetailsPage extends StatefulWidget {
-  const ClubDetailsPage({Key? key});
+class HotelDetailsPage extends StatefulWidget {
+  const HotelDetailsPage({Key? key});
 
-  static const String routName = "/clubdetails-page";
+  static const String routName = "/hoteldeatils-page";
 
   @override
-  State<ClubDetailsPage> createState() => _ClubDetailsPageState();
+  State<HotelDetailsPage> createState() => _HotelDetailsPageState();
 }
 
-class _ClubDetailsPageState extends State<ClubDetailsPage>
+class _HotelDetailsPageState extends State<HotelDetailsPage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   int _currentIndex = 0;
-  final List<String> _tabTitles = ['Overview', 'Photo', 'Review', 'Direction'];
+  final List<String> _tabTitles = [
+    'Overview',
+    'Photo',
+    'Facilities',
+    'Review',
+  ];
 
   @override
   void initState() {
@@ -53,7 +59,7 @@ class _ClubDetailsPageState extends State<ClubDetailsPage>
             child: Stack(
               children: [
                 Image.asset(
-                  "assets/images/detail.jpeg",
+                  "assets/images/accom_details1.png",
                   fit: BoxFit.cover,
                   height: double.infinity,
                   width: double.infinity,
@@ -75,6 +81,13 @@ class _ClubDetailsPageState extends State<ClubDetailsPage>
                             Navigator.pop(context);
                           },
                         ),
+                      ),
+                      Text(
+                        "Cliff Edge Calangute",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
                       ),
                       Container(
                         decoration: BoxDecoration(
@@ -101,7 +114,7 @@ class _ClubDetailsPageState extends State<ClubDetailsPage>
               tabBarTheme: const TabBarTheme(
                 labelColor: Colors.black, // Color of the selected tab label
                 unselectedLabelColor:
-                    Colors.black, // Color of the unselected tab labels
+                    Colors.grey, // Color of the unselected tab labels
               ),
             ),
             child: Container(
@@ -121,7 +134,7 @@ class _ClubDetailsPageState extends State<ClubDetailsPage>
             child: TabBarView(
               controller: _tabController,
               children: const [
-                OverviewPage(),
+                HotelOverviewPage(),
                 PhotoPage(),
                 ReviewPage(),
                 DirectionPage(),

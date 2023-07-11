@@ -1,16 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../size_config.dart';
+import '../../../../size_config.dart';
 
-class OverviewPage extends StatefulWidget {
-  const OverviewPage({super.key});
+class HotelOverviewPage extends StatefulWidget {
+  const HotelOverviewPage({super.key});
+
+  static const String routName = "/hoteloverview-page";
 
   @override
-  State<OverviewPage> createState() => _OverviewPageState();
+  State<HotelOverviewPage> createState() => _HotelOverviewPageState();
 }
 
-class _OverviewPageState extends State<OverviewPage> {
+class _HotelOverviewPageState extends State<HotelOverviewPage> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -29,7 +31,7 @@ class _OverviewPageState extends State<OverviewPage> {
                 "About",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 15,
+                  fontSize: 20,
                 ),
               )
             ],
@@ -40,9 +42,9 @@ class _OverviewPageState extends State<OverviewPage> {
           const Row(
             children: [
               Text(
-                "A nice quaint cafe with a good view of the lower city \nand mountains.Good to visit even when clody or \nraining because they have a friendly pupper to keep \nguets company as you",
+                "Located in Anjuna, a few steps from Anjuna Beach, Zulu\nLand cottages - near Curlies beach shack and shiva\nvalley - Anjuna beach provides accommodations with\na fitness center, free private parking, a garden and a\nrestaurant. ",
                 style: TextStyle(
-                  fontSize: 15,
+                  fontSize: 14,
                   color: Colors.grey,
                 ),
                 maxLines: 4,
@@ -64,7 +66,7 @@ class _OverviewPageState extends State<OverviewPage> {
               Row(
                 children: [
                   Text(
-                    "Normal Entry",
+                    "Price",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 15,
@@ -76,7 +78,7 @@ class _OverviewPageState extends State<OverviewPage> {
               Row(
                 children: [
                   Text(
-                    "INR 800",
+                    "INR 2800",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 15,
@@ -84,46 +86,12 @@ class _OverviewPageState extends State<OverviewPage> {
                     ),
                   ),
                   Text(
-                    " / person",
+                    "/night",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 15,
                     ),
                   )
-                ],
-              ),
-            ],
-          ),
-          const Divider(
-            color: Colors.grey,
-          ),
-          SizedBox(
-            height: height * 0.008,
-          ),
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  Text(
-                    "Stag Entry",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15,
-                      color: Colors.grey,
-                    ),
-                  )
-                ],
-              ),
-              Row(
-                children: [
-                  Text(
-                    "Free for All",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15,
-                    ),
-                  ),
                 ],
               ),
             ],
@@ -152,7 +120,7 @@ class _OverviewPageState extends State<OverviewPage> {
               Row(
                 children: [
                   Text(
-                    "Alchoholic & DJ",
+                    "3 Star Hotel | Top Location",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 15,
@@ -174,7 +142,7 @@ class _OverviewPageState extends State<OverviewPage> {
               Row(
                 children: [
                   Text(
-                    "Distance",
+                    "Room Type",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 15,
@@ -186,7 +154,7 @@ class _OverviewPageState extends State<OverviewPage> {
               Row(
                 children: [
                   Text(
-                    "10 KM",
+                    "Cottage With Garden View",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 15,
@@ -208,7 +176,7 @@ class _OverviewPageState extends State<OverviewPage> {
               Row(
                 children: [
                   Text(
-                    "Good for",
+                    "Check In",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 15,
@@ -220,7 +188,41 @@ class _OverviewPageState extends State<OverviewPage> {
               Row(
                 children: [
                   Text(
-                    "Coffee, Snack food, Take away",
+                    "12 PM",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          const Divider(
+            color: Colors.grey,
+          ),
+          SizedBox(
+            height: height * 0.008,
+          ),
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  Text(
+                    "Check Out",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
+                      color: Colors.grey,
+                    ),
+                  )
+                ],
+              ),
+              Row(
+                children: [
+                  Text(
+                    "11 AM",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 15,
@@ -256,11 +258,16 @@ class _OverviewPageState extends State<OverviewPage> {
               const Icon(
                 Icons.coffee,
                 color: Colors.black,
+                size: 25,
               ),
               SizedBox(
                 width: width * 0.03,
               ),
-              const Text("Backelors & Couples")
+              const Text("Backelors & Couples",
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ))
             ],
           ),
           SizedBox(
@@ -269,13 +276,19 @@ class _OverviewPageState extends State<OverviewPage> {
           Row(
             children: [
               const Icon(
-                CupertinoIcons.car_detailed,
+                CupertinoIcons.heart_fill,
                 color: Colors.black,
               ),
               SizedBox(
                 width: width * 0.03,
               ),
-              const Text("Free bike park")
+              const Text(
+                "Pet Friendly",
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ],
           )
         ]),

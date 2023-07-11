@@ -5,12 +5,15 @@ import 'package:goaviralnews/features/auth/screens/otpverification.dart';
 import 'package:goaviralnews/features/auth/screens/otpverification_register.dart';
 import 'package:goaviralnews/features/auth/screens/profile.dart';
 import 'package:goaviralnews/features/auth/screens/register.dart';
-import 'package:goaviralnews/features/navigation/screens/clubs.dart';
+import 'package:goaviralnews/features/navigation/screens/Stay/HotelDetailsPage.dart';
+import 'package:goaviralnews/features/navigation/screens/Clubs/ClubsPage.dart';
+import 'package:goaviralnews/features/navigation/screens/Stay/HotelOverviewPage.dart';
 import 'package:goaviralnews/features/navigation/screens/dashboard.dart';
 import 'package:goaviralnews/features/navigation/screens/slider.dart';
+import 'package:goaviralnews/features/navigation/screens/Stay/HotelsPage.dart';
 import 'package:goaviralnews/features/onboarding/screens/onboarding.dart';
 import 'package:goaviralnews/routes.dart';
-import 'package:goaviralnews/features/navigation/screens/ClubDetailsPage.dart';
+import 'package:goaviralnews/features/navigation/screens/Clubs/ClubDetailsPage.dart';
 import 'package:goaviralnews/features/navigation/screens/CustomPlan.dart';
 
 Route<dynamic> generateRoute(RouteSettings routeSettings) {
@@ -65,20 +68,35 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
         settings: routeSettings,
         builder: (_) => const SliderPage(),
       );
+    case CustomTravellingPlan.routName:
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => const CustomTravellingPlan(),
+      );
+
+    //Clubs Page Routes
     case ClubsPage.routName:
       return MaterialPageRoute(
         settings: routeSettings,
         builder: (_) => const ClubsPage(),
       );
+
     case ClubDetailsPage.routName:
       return MaterialPageRoute(
         settings: routeSettings,
         builder: (_) => const ClubDetailsPage(),
       );
-    case CustomTravellingPlan.routName:
+
+    //Hotel Page Routes
+    case HotelsPage.routName:
       return MaterialPageRoute(
         settings: routeSettings,
-        builder: (_) => const CustomTravellingPlan(),
+        builder: (_) => const HotelsPage(),
+      );
+      case HotelOverviewPage.routName:
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => const HotelOverviewPage(),
       );
 
     default:

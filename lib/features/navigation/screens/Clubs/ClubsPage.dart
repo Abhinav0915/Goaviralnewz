@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:goaviralnews/features/navigation/screens/ClubDetailsPage.dart';
+import 'package:goaviralnews/features/navigation/screens/Clubs/ClubDetailsPage.dart';
 import 'package:goaviralnews/features/navigation/screens/photo_gallery.dart';
 import 'package:goaviralnews/features/navigation/screens/search.dart';
 import 'package:goaviralnews/features/navigation/screens/slider.dart';
 
-import '../../../globalVariables.dart';
-import '../../../size_config.dart';
-import 'dashboard.dart';
+import '../../../../globalVariables.dart';
+import '../../../../size_config.dart';
+import '../dashboard.dart';
 
 class ClubsPage extends StatefulWidget {
   const ClubsPage({super.key});

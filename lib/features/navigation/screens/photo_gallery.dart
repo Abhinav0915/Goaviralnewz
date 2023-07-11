@@ -1,9 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:goaviralnews/features/navigation/screens/dashboard.dart';
+import 'package:goaviralnews/features/navigation/screens/search.dart';
 import 'package:goaviralnews/features/navigation/screens/slider.dart';
 import 'package:goaviralnews/globalVariables.dart';
 import 'package:goaviralnews/size_config.dart';
+
 class PhotoGalleryScreen extends StatefulWidget {
   const PhotoGalleryScreen({Key? key}) : super(key: key);
 
@@ -15,11 +18,42 @@ class _PhotoGalleryScreenState extends State<PhotoGalleryScreen> {
   final List<String> imageList = [
     'assets/images/gallery1.png',
     'assets/images/gallery2.png',
-    'assets/images/gallery3.png',
-    'assets/images/gallery4.png',
-    'assets/images/gallery5.png',
+    'assets/images/gallery3.jpg',
+    'assets/images/gallery4.jpg',
+    'assets/images/gallery5.jpg',
   ];
 
+  final List<String> place = [
+    'Waterfall',
+    'Jetski',
+    'Beaches',
+    'Treking',
+    'Wildlife',
+  ];
+
+  final List<String> location = [
+    'Goa',
+    'Goa',
+    'Goa',
+    'Goa',
+    'Goa',
+  ];
+
+  final List<String> distance = [
+    '2.8km',
+    '3.5Km',
+    '8.5Km',
+    '4.2Km',
+    '2.2KM',
+  ];
+
+  final List<String> hastags = [
+    '#waterfall',
+    '#thrilling',
+    '#beach',
+    '#mountain',
+    '#wildlife',
+  ];
   String selectedAvatar = "assets/icons/Group 42.png"; // Default avatar path
 
   @override
@@ -27,8 +61,88 @@ class _PhotoGalleryScreenState extends State<PhotoGalleryScreen> {
     SizeConfig().init(context);
     double width = SizeConfig.screenW!;
     double height = SizeConfig.screenH!;
+    int _currentIndex = 2;
     return Scaffold(
       backgroundColor: GlobalVariables.backgroundColor,
+      bottomNavigationBar: Container(
+        height: 80,
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(25.0),
+            topRight: Radius.circular(25.0),
+          ),
+        ),
+        child: Container(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(25.0),
+              topRight: Radius.circular(25.0),
+            ),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              IconButton(
+                onPressed: () {
+                  setState(() {
+                    _currentIndex = 0;
+                  });
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const DashboardPage()),
+                  );
+                },
+                icon: const Icon(Icons.home),
+                color: _currentIndex == 0 ? Colors.blue : Colors.grey,
+                tooltip: "Home",
+              ),
+              IconButton(
+                onPressed: () {
+                  setState(() {
+                    _currentIndex = 1;
+                  });
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SearchPage()),
+                  );
+                },
+                icon: const Icon(Icons.search),
+                color: _currentIndex == 1 ? Colors.blue : Colors.grey,
+              ),
+              IconButton(
+                onPressed: () {
+                  setState(() {
+                    _currentIndex = 2;
+                  });
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const PhotoGalleryScreen(),
+                    ),
+                  );
+                },
+                icon: const Icon(Icons.bookmark),
+                color: _currentIndex == 2 ? Colors.blue : Colors.grey,
+              ),
+              IconButton(
+                onPressed: () {
+                  setState(() {
+                    _currentIndex = 3;
+                  });
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const SliderPage()),
+                  );
+                },
+                icon: const Icon(Icons.person_2),
+                color: _currentIndex == 3 ? Colors.blue : Colors.grey,
+              ),
+            ],
+          ),
+        ),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.symmetric(
@@ -259,15 +373,73 @@ class _PhotoGalleryScreenState extends State<PhotoGalleryScreen> {
                   aspectRatio: 16 / 9,
                   initialPage: 0,
                   autoPlay: true,
-                  autoPlayInterval: const Duration(seconds: 3),
+                  autoPlayInterval: const Duration(seconds: 4),
                   autoPlayAnimationDuration: const Duration(milliseconds: 800),
                   autoPlayCurve: Curves.fastOutSlowIn,
                 ),
                 itemBuilder: (BuildContext context, int index, int realIndex) {
                   return Container(
-                    child: Image.asset(
-                      imageList[index],
-                      fit: BoxFit.cover,
+                    padding:
+                        const EdgeInsets.only(left: 20, bottom: 16, top: 25),
+                    width: 250,
+                    height: 180,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      image: DecorationImage(
+                        image: AssetImage(imageList[index]), // Image
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    child: Stack(
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              place[index],
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 30,
+                                color: Colors.white,
+                              ),
+                            ),
+                            SizedBox(height: 8),
+                            Row(
+                              children: [
+                                Text(
+                                  location[index],
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 16,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                SizedBox(width: 8),
+                                Text(
+                                  distance[index],
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 16,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Positioned(
+                          bottom: 0,
+                          left: 0,
+                          child: Text(
+                            hastags[index],
+                            style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 16,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   );
                 },

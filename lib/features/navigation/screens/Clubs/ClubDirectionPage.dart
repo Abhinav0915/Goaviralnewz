@@ -14,7 +14,7 @@ class _DirectionPageState extends State<DirectionPage> {
       body: SingleChildScrollView(
         child: Column(children: [
           Row(
-            children: [Text("Overview Page")],
+            children: [Text("Direction Page")],
           )
         ]),
       ),

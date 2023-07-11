@@ -640,8 +640,9 @@ class _SearchPageState extends State<SearchPage> {
                                   height: 25,
                                   width: 45,
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      color: Color(0xFF0879BF)),
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: Color(0xFF0879BF),
+                                  ),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
