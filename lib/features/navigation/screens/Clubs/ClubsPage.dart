@@ -70,7 +70,7 @@ class _ClubsPageState extends State<ClubsPage> {
                   });
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) =>  SearchPage()),
+                    MaterialPageRoute(builder: (context) => SearchPage()),
                   );
                 },
                 icon: const Icon(Icons.search),
@@ -662,16 +662,51 @@ class _ClubsPageState extends State<ClubsPage> {
                       Padding(
                         padding: const EdgeInsets.only(
                             left: 10, bottom: 10, top: 10),
-                        child: Container(
-                          width: 90,
-                          height: 90,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            image: const DecorationImage(
-                              image: AssetImage("assets/images/card1.jpg"),
-                              fit: BoxFit.cover,
+                        child: Stack(
+                          children: [
+                            Container(
+                              width: 90,
+                              height: 90,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                image: const DecorationImage(
+                                  image: AssetImage("assets/images/card1.jpg"),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                             ),
-                          ),
+                            Positioned(
+                              bottom: 0,
+                              right: 0,
+                              child: Container(
+                                padding: const EdgeInsets.all(2),
+                                decoration: BoxDecoration(
+                                  color: Colors.blue,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Icon(
+                                  Icons.check,
+                                  color: Colors.white,
+                                  size: 16,
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              bottom: 0,
+                              left: 0,
+                              child: Container(
+                                padding: const EdgeInsets.all(8),
+                                child: Text(
+                                  '40%  off',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       Expanded(
@@ -720,27 +755,19 @@ class _ClubsPageState extends State<ClubsPage> {
                                     child: const Text(
                                       "Bang Bang Club",
                                       style: TextStyle(
-                                        fontSize: 15,
+                                        fontSize: 17,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                   ),
                                   Row(
                                     children: [
-                                      Container(
-                                        height: 20,
-                                        width: 65,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                          color: Colors.blue,
-                                        ),
-                                        child: const Center(
-                                          child: Text("Bollywood",
-                                              style: TextStyle(
-                                                  fontSize: 10,
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold)),
+                                      const Text(
+                                        "Visit Now",
+                                        style: TextStyle(
+                                          fontSize: 10,
+                                          color: Colors.green,
+                                          fontWeight: FontWeight.bold,
                                         ),
                                       ),
                                       SizedBox(width: width * 0.025),
@@ -751,6 +778,7 @@ class _ClubsPageState extends State<ClubsPage> {
                                           });
                                         },
                                         child: Icon(
+                                          size: 20,
                                           isFavorite
                                               ? Icons.favorite
                                               : Icons.favorite_border,
@@ -835,45 +863,50 @@ class _ClubsPageState extends State<ClubsPage> {
                                 children: [
                                   Row(
                                     children: [
-                                      const Text(
-                                        "#Trance",
-                                        style: TextStyle(
-                                          color: Colors.grey,
-                                          fontStyle: FontStyle.italic,
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.bold,
+                                      Container(
+                                        height: 20,
+                                        width: 65,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          color: Colors.blue,
+                                        ),
+                                        child: const Center(
+                                          child: Text("Bollywood",
+                                              style: TextStyle(
+                                                  fontSize: 10,
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold)),
                                         ),
                                       ),
-                                      SizedBox(width: width * 0.015),
-                                      const Text(
-                                        "#Happyhours",
-                                        style: TextStyle(
-                                          color: Colors.grey,
-                                          fontStyle: FontStyle.italic,
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.bold,
+                                      SizedBox(width: width * 0.025),
+                                      Container(
+                                        height: 20,
+                                        width: 65,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          color: Colors.blue,
                                         ),
-                                      ),
-                                      SizedBox(width: width * 0.015),
-                                      const Text(
-                                        "#DJsets",
-                                        style: TextStyle(
-                                          color: Colors.grey,
-                                          fontStyle: FontStyle.italic,
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.bold,
+                                        child: const Center(
+                                          child: Text("Bollywood",
+                                              style: TextStyle(
+                                                  fontSize: 10,
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold)),
                                         ),
                                       ),
                                     ],
                                   ),
-                                  const Row(
+                                  Row(
                                     children: [
+                                      Icon(
+                                        CupertinoIcons.eye_fill,
+                                        size: 15,
+                                      ),
                                       Text(
-                                        "Visit Now",
+                                        "728",
                                         style: TextStyle(
-                                          color:
-                                              Color.fromARGB(255, 10, 61, 12),
-                                          decoration: TextDecoration.underline,
                                           fontSize: 10,
                                           fontWeight: FontWeight.bold,
                                         ),
@@ -897,16 +930,51 @@ class _ClubsPageState extends State<ClubsPage> {
                       Padding(
                         padding: const EdgeInsets.only(
                             left: 10, bottom: 10, top: 10),
-                        child: Container(
-                          width: 90,
-                          height: 90,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            image: const DecorationImage(
-                              image: AssetImage("assets/images/card2.jpg"),
-                              fit: BoxFit.cover,
+                        child: Stack(
+                          children: [
+                            Container(
+                              width: 90,
+                              height: 90,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                image: const DecorationImage(
+                                  image: AssetImage("assets/images/card1.jpg"),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                             ),
-                          ),
+                            // Positioned(
+                            //   bottom: 0,
+                            //   right: 0,
+                            //   child: Container(
+                            //     padding: const EdgeInsets.all(2),
+                            //     decoration: BoxDecoration(
+                            //       color: Colors.blue,
+                            //       shape: BoxShape.circle,
+                            //     ),
+                            //     child: Icon(
+                            //       Icons.check,
+                            //       color: Colors.white,
+                            //       size: 16,
+                            //     ),
+                            //   ),
+                            // ),
+                            // Positioned(
+                            //   bottom: 0,
+                            //   left: 0,
+                            //   child: Container(
+                            //     padding: const EdgeInsets.all(8),
+                            //     child: Text(
+                            //       '40%  off',
+                            //       style: TextStyle(
+                            //         color: Colors.white,
+                            //         fontSize: 16,
+                            //         fontWeight: FontWeight.bold,
+                            //       ),
+                            //     ),
+                            //   ),
+                            // ),
+                          ],
                         ),
                       ),
                       Expanded(
@@ -955,33 +1023,35 @@ class _ClubsPageState extends State<ClubsPage> {
                                     child: const Text(
                                       "Bang Bang Club",
                                       style: TextStyle(
-                                        fontSize: 15,
+                                        fontSize: 17,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                   ),
                                   Row(
                                     children: [
-                                      Container(
-                                        height: 20,
-                                        width: 65,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                          color: Colors.purple,
-                                        ),
-                                        child: const Center(
-                                          child: Text("Trance",
-                                              style: TextStyle(
-                                                  fontSize: 10,
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold)),
+                                      const Text(
+                                        "Visit Now",
+                                        style: TextStyle(
+                                          fontSize: 10,
+                                          color: Colors.green,
+                                          fontWeight: FontWeight.bold,
                                         ),
                                       ),
                                       SizedBox(width: width * 0.025),
-                                      const Icon(
-                                        Icons.favorite_border,
-                                        size: 30,
+                                      GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            isFavorite = !isFavorite;
+                                          });
+                                        },
+                                        child: Icon(
+                                          size: 20,
+                                          isFavorite
+                                              ? Icons.favorite
+                                              : Icons.favorite_border,
+                                          color: isFavorite ? Colors.red : null,
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -1027,15 +1097,15 @@ class _ClubsPageState extends State<ClubsPage> {
                                 SizedBox(width: width * 0.035),
                                 const Icon(
                                   CupertinoIcons.ticket,
-                                  color: Colors.blue,
+                                  color: Colors.black,
                                   size: 15,
                                 ),
                                 SizedBox(width: width * 0.015),
                                 const Text(
-                                  "Free",
+                                  "Not Allowed",
                                   style: TextStyle(
                                       fontSize: 10,
-                                      color: Colors.blue,
+                                      color: Colors.black,
                                       fontWeight: FontWeight.bold),
                                 ),
                               ]),
@@ -1061,35 +1131,50 @@ class _ClubsPageState extends State<ClubsPage> {
                                 children: [
                                   Row(
                                     children: [
-                                      const Text(
-                                        "#PartyAnimals",
-                                        style: TextStyle(
-                                          color: Colors.grey,
-                                          fontStyle: FontStyle.italic,
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.bold,
+                                      Container(
+                                        height: 20,
+                                        width: 65,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          color: Colors.blue,
+                                        ),
+                                        child: const Center(
+                                          child: Text("Bollywood",
+                                              style: TextStyle(
+                                                  fontSize: 10,
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold)),
                                         ),
                                       ),
-                                      SizedBox(width: width * 0.015),
-                                      const Text(
-                                        "#Happyhours",
-                                        style: TextStyle(
-                                          color: Colors.grey,
-                                          fontStyle: FontStyle.italic,
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.bold,
+                                      SizedBox(width: width * 0.025),
+                                      Container(
+                                        height: 20,
+                                        width: 65,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          color: Colors.blue,
+                                        ),
+                                        child: const Center(
+                                          child: Text("Bollywood",
+                                              style: TextStyle(
+                                                  fontSize: 10,
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold)),
                                         ),
                                       ),
                                     ],
                                   ),
-                                  const Row(
+                                  Row(
                                     children: [
+                                      Icon(
+                                        CupertinoIcons.eye_fill,
+                                        size: 15,
+                                      ),
                                       Text(
-                                        "Visit Now",
+                                        "728",
                                         style: TextStyle(
-                                          color:
-                                              Color.fromARGB(255, 10, 61, 12),
-                                          decoration: TextDecoration.underline,
                                           fontSize: 10,
                                           fontWeight: FontWeight.bold,
                                         ),
