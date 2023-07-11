@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:goaviralnews/features/navigation/screens/Clubs/ClubOverviewPage.dart';
 import 'package:goaviralnews/features/navigation/screens/Clubs/ClubPhotoPage.dart';
 import 'package:goaviralnews/features/navigation/screens/Clubs/ClubDirectionPage.dart';
 import 'package:goaviralnews/features/navigation/screens/Clubs/ClubReviewPage.dart';

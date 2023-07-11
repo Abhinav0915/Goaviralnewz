@@ -5,7 +5,6 @@ import 'package:goaviralnews/features/auth/screens/otpverification.dart';
 import 'package:goaviralnews/features/auth/screens/otpverification_register.dart';
 import 'package:goaviralnews/features/auth/screens/profile.dart';
 import 'package:goaviralnews/features/auth/screens/register.dart';
-import 'package:goaviralnews/features/navigation/screens/Stay/HotelDetailsPage.dart';
 import 'package:goaviralnews/features/navigation/screens/Clubs/ClubsPage.dart';
 import 'package:goaviralnews/features/navigation/screens/Stay/HotelOverviewPage.dart';
 import 'package:goaviralnews/features/navigation/screens/dashboard.dart';
