@@ -8,6 +8,7 @@ import 'package:goaviralnews/features/auth/screens/register.dart';
 import 'package:goaviralnews/features/navigation/screens/Clubs/ClubsPage.dart';
 import 'package:goaviralnews/features/navigation/screens/Food/RestaurantDetailsPage.dart';
 import 'package:goaviralnews/features/navigation/screens/Food/RestaurantPage.dart';
+import 'package:goaviralnews/features/navigation/screens/GoaTour/GoaTourPage.dart';
 import 'package:goaviralnews/features/navigation/screens/Stay/HotelOverviewPage.dart';
 import 'package:goaviralnews/features/navigation/screens/dashboard.dart';
 import 'package:goaviralnews/features/navigation/screens/slider.dart';
@@ -109,6 +110,12 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
       return MaterialPageRoute(
         settings: routeSettings,
         builder: (_) => const RestaurantDetailsPage(),
+      );
+    //Goa Tour Page Routes
+     case GoaTourPage.routName:
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => const GoaTourPage(),
       );
 
     default:

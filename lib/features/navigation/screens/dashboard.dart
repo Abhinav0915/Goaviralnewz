@@ -382,10 +382,10 @@ class _DashboardPageState extends State<DashboardPage> {
                                       height: 80,
                                       child: GestureDetector(
                                         onTap: () {
-                                          // Navigator.pushNamed(
-                                          //   context,
-                                          //   "/customtrip-page",
-                                          // );
+                                          Navigator.pushNamed(
+                                            context,
+                                            "/goatour-page",
+                                          );
                                         },
                                         child: ClipRRect(
                                           borderRadius:
