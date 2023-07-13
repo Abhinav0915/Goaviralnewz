@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:goaviralnews/features/navigation/screens/Clubs/ClubDetailsPage.dart';
+import 'package:goaviralnews/features/navigation/screens/Food/RestaurantDetailsPage.dart';
 import 'package:goaviralnews/features/navigation/screens/photo_gallery.dart';
 import 'package:goaviralnews/features/navigation/screens/search.dart';
 import 'package:goaviralnews/features/navigation/screens/slider.dart';
@@ -216,30 +217,39 @@ class _RestaurantPageState extends State<RestaurantPage> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
-                                        Container(
-                                          height: 20,
-                                          width: 70,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color: Colors.white
-                                                    .withOpacity(0.4),
-                                                spreadRadius: 2,
-                                                blurRadius: 4,
-                                                offset: const Offset(0, 2),
+                                        Transform.translate(
+                                          offset: const Offset(
+                                              -20, 0), // Adjusted offset value
+                                          child: Transform(
+                                            transform: Matrix4.identity()
+                                              ..setEntry(
+                                                  3, 2, 0.001) // perspective
+                                              ..rotateY(-0.2), // rotation
+                                            child: Container(
+                                              height: 20,
+                                              width: 70,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.black
+                                                        .withOpacity(0.4),
+                                                    blurRadius: 5,
+                                                    offset: const Offset(5, 0),
+                                                  ),
+                                                ],
+                                                color: Colors.white,
                                               ),
-                                            ],
-                                            color: Colors.white,
-                                          ),
-                                          child: const Center(
-                                            child: Text(
-                                              "#mostvisited",
-                                              style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.bold,
+                                              child: const Center(
+                                                child: Text(
+                                                  "#mostvisited",
+                                                  style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 10,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -332,21 +342,39 @@ class _RestaurantPageState extends State<RestaurantPage> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
-                                        Container(
-                                          height: 20,
-                                          width: 70,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            color: Colors.white,
-                                          ),
-                                          child: const Center(
-                                            child: Text(
-                                              "#mostvisited",
-                                              style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.bold,
+                                        Transform.translate(
+                                          offset: const Offset(
+                                              -20, 0), // Adjusted offset value
+                                          child: Transform(
+                                            transform: Matrix4.identity()
+                                              ..setEntry(
+                                                  3, 2, 0.001) // perspective
+                                              ..rotateY(-0.2), // rotation
+                                            child: Container(
+                                              height: 20,
+                                              width: 70,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.black
+                                                        .withOpacity(0.4),
+                                                    blurRadius: 5,
+                                                    offset: const Offset(5, 0),
+                                                  ),
+                                                ],
+                                                color: Colors.white,
+                                              ),
+                                              child: const Center(
+                                                child: Text(
+                                                  "#mostvisited",
+                                                  style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 10,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -410,7 +438,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
                         ),
                       ),
                       SizedBox(
-                        width: width * 0.015,
+                        width: width * 0.035,
                       ),
                       Container(
                         height: 190,
@@ -439,21 +467,39 @@ class _RestaurantPageState extends State<RestaurantPage> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
-                                        Container(
-                                          height: 20,
-                                          width: 70,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            color: Colors.white,
-                                          ),
-                                          child: const Center(
-                                            child: Text(
-                                              "#mostvisited",
-                                              style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.bold,
+                                        Transform.translate(
+                                          offset: const Offset(
+                                              -20, 0), // Adjusted offset value
+                                          child: Transform(
+                                            transform: Matrix4.identity()
+                                              ..setEntry(
+                                                  3, 2, 0.001) // perspective
+                                              ..rotateY(-0.2), // rotation
+                                            child: Container(
+                                              height: 20,
+                                              width: 70,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.black
+                                                        .withOpacity(0.4),
+                                                    blurRadius: 5,
+                                                    offset: const Offset(5, 0),
+                                                  ),
+                                                ],
+                                                color: Colors.white,
+                                              ),
+                                              child: const Center(
+                                                child: Text(
+                                                  "#mostvisited",
+                                                  style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 10,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -746,7 +792,8 @@ class _RestaurantPageState extends State<RestaurantPage> {
                                                       .size
                                                       .height *
                                                   0.75,
-                                              child: const ClubDetailsPage(),
+                                              child:
+                                                  const RestaurantDetailsPage(),
                                             ),
                                           );
                                         });
@@ -1094,7 +1141,8 @@ class _RestaurantPageState extends State<RestaurantPage> {
                                                       .size
                                                       .height *
                                                   0.75,
-                                              child: const ClubDetailsPage(),
+                                              child:
+                                                  const RestaurantDetailsPage(),
                                             ),
                                           );
                                         });
