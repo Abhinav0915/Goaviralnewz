@@ -525,32 +525,40 @@ class _DashboardPageState extends State<DashboardPage> {
                           ),
                           Column(
                             children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(30),
-                                  color: Colors.grey.shade200,
-                                  // boxShadow: [
-                                  //   BoxShadow(
-                                  //     color: Colors.grey.withOpacity(0.3),
-                                  //     spreadRadius: 2,
-                                  //     blurRadius: 5,
-                                  //     offset: const Offset(0, 8),
-                                  //   ),
-                                  // ],
-                                ),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(30),
-                                  child: PhysicalModel(
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    "/restaurant-page",
+                                  );
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30),
                                     color: Colors.grey.shade200,
-                                    elevation: 10,
-                                    shadowColor: Colors.black,
-                                    borderRadius: BorderRadius.circular(5),
-                                    child: Container(
-                                      width: 80,
-                                      height: 80,
-                                      child: Image.asset(
-                                        "assets/images/5.png",
-                                        fit: BoxFit.cover,
+                                    // boxShadow: [
+                                    //   BoxShadow(
+                                    //     color: Colors.grey.withOpacity(0.3),
+                                    //     spreadRadius: 2,
+                                    //     blurRadius: 5,
+                                    //     offset: const Offset(0, 8),
+                                    //   ),
+                                    // ],
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(30),
+                                    child: PhysicalModel(
+                                      color: Colors.grey.shade200,
+                                      elevation: 10,
+                                      shadowColor: Colors.black,
+                                      borderRadius: BorderRadius.circular(5),
+                                      child: Container(
+                                        width: 80,
+                                        height: 80,
+                                        child: Image.asset(
+                                          "assets/images/5.png",
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                     ),
                                   ),

@@ -6,6 +6,7 @@ import 'package:goaviralnews/features/auth/screens/otpverification_register.dart
 import 'package:goaviralnews/features/auth/screens/profile.dart';
 import 'package:goaviralnews/features/auth/screens/register.dart';
 import 'package:goaviralnews/features/navigation/screens/Clubs/ClubsPage.dart';
+import 'package:goaviralnews/features/navigation/screens/Food/RestaurantPage.dart';
 import 'package:goaviralnews/features/navigation/screens/Stay/HotelOverviewPage.dart';
 import 'package:goaviralnews/features/navigation/screens/dashboard.dart';
 import 'package:goaviralnews/features/navigation/screens/slider.dart';
@@ -73,6 +74,7 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
         builder: (_) => const CustomTravellingPlan(),
       );
 
+
     //Clubs Page Routes
     case ClubsPage.routName:
       return MaterialPageRoute(
@@ -86,6 +88,7 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
         builder: (_) => const ClubDetailsPage(),
       );
 
+
     //Hotel Page Routes
     case HotelsPage.routName:
       return MaterialPageRoute(
@@ -97,6 +100,14 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
         settings: routeSettings,
         builder: (_) => const HotelOverviewPage(),
       );
+    //Restaurant Page Routes
+  case RestaurantPage.routName:
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => const RestaurantPage(),
+      );
+
+
 
     default:
       return MaterialPageRoute(
