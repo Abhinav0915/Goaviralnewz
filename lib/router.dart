@@ -11,6 +11,7 @@ import 'package:goaviralnews/features/navigation/screens/Food/RestaurantDetailsP
 import 'package:goaviralnews/features/navigation/screens/Food/RestaurantPage.dart';
 import 'package:goaviralnews/features/navigation/screens/GoaTour/GoaTourPage.dart';
 import 'package:goaviralnews/features/navigation/screens/Historical/historicalPage.dart';
+import 'package:goaviralnews/features/navigation/screens/Offbeat/offbeatPage.dart';
 import 'package:goaviralnews/features/navigation/screens/Stay/HotelOverviewPage.dart';
 import 'package:goaviralnews/features/navigation/screens/dashboard.dart';
 import 'package:goaviralnews/features/navigation/screens/slider.dart';
@@ -130,6 +131,12 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
       return MaterialPageRoute(
         settings: routeSettings,
         builder: (_) => const HistoricalPage(),
+      );
+    //Offbeat Page
+    case OffbeatPage.routName:
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => const OffbeatPage(),
       );
 
     default:
