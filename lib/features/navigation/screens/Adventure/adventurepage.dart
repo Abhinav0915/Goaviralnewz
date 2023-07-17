@@ -58,37 +58,46 @@ class _AdventurePageState extends State<AdventurePage> {
                           ),
                         ),
                         SizedBox(height: height * 0.05),
-                        Text(
-                          'Lets',
-                          style: GoogleFonts.poppins(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                          ),
-                        ),
-                        Text(
-                          'Have',
-                          style: GoogleFonts.poppins(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 25,
-                          ),
-                        ),
-                        Text(
-                          'Some',
-                          style: GoogleFonts.poppins(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 25,
-                          ),
-                        ),
-                        Text(
-                          'Fun',
-                          style: GoogleFonts.poppins(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 35,
-                          ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Lets',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 25,
+                                height: 0.9,
+                              ),
+                            ),
+                            Text(
+                              'Have',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 30,
+                                height: 1,
+                              ),
+                            ),
+                            Text(
+                              'Some',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 45,
+                                height: 1.2,
+                              ),
+                            ),
+                            Text(
+                              'Fun',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 60,
+                                height: 0.9,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -96,18 +105,12 @@ class _AdventurePageState extends State<AdventurePage> {
                   Positioned(
                     top: height * 0.05,
                     right: width * 0.05,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: IconButton(
-                        icon: const Icon(CupertinoIcons.search,
-                            color: Colors.black),
-                        onPressed: () {
-                          // Perform search functionality
-                        },
-                      ),
+                    child: IconButton(
+                      icon: const Icon(CupertinoIcons.search,
+                          color: Colors.black),
+                      onPressed: () {
+                        // Perform search functionality
+                      },
                     ),
                   ),
                 ],
@@ -174,7 +177,7 @@ class _AdventurePageState extends State<AdventurePage> {
                             child: Icon(
                               Icons.favorite_border_outlined,
                               color: Colors.white,
-                              size: 35,
+                              size: 20,
                             ),
                           ),
                         ],
@@ -229,7 +232,7 @@ class _AdventurePageState extends State<AdventurePage> {
                             child: Icon(
                               Icons.favorite_border_outlined,
                               color: Colors.white,
-                              size: 35,
+                              size: 20,
                             ),
                           ),
                         ],
@@ -284,7 +287,7 @@ class _AdventurePageState extends State<AdventurePage> {
                             child: Icon(
                               Icons.favorite_border_outlined,
                               color: Colors.white,
-                              size: 35,
+                              size: 20,
                             ),
                           ),
                         ],
@@ -339,7 +342,7 @@ class _AdventurePageState extends State<AdventurePage> {
                             child: Icon(
                               Icons.favorite_border_outlined,
                               color: Colors.white,
-                              size: 35,
+                              size: 20,
                             ),
                           ),
                         ],
@@ -395,7 +398,7 @@ class _AdventurePageState extends State<AdventurePage> {
                     ],
                   ),
                   SizedBox(
-                    height: height * 0.008,
+                    height: height * 0.015,
                   ),
                   Row(
                     children: [
@@ -446,11 +449,8 @@ class _AdventurePageState extends State<AdventurePage> {
                 ],
               ),
             ),
-            SizedBox(
-              height: height * 0.015,
-            ),
             Container(
-              padding: const EdgeInsets.only(left: 15, right: 15),
+              padding: const EdgeInsets.all(25),
               child: Row(
                 children: [
                   Column(
@@ -937,7 +937,7 @@ class _AdventurePageState extends State<AdventurePage> {
               decoration: const BoxDecoration(color: Color(0xFFF1F0F7)),
               child: Center(
                 child: Container(
-                  padding: const EdgeInsets.only(left: 20, right: 10, top: 25),
+                  padding: const EdgeInsets.all(15),
                   height: 303,
                   width: 359,
                   decoration: BoxDecoration(

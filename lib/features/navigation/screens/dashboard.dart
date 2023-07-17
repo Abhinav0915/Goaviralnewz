@@ -678,7 +678,12 @@ class _DashboardPageState extends State<DashboardPage> {
                           Column(
                             children: [
                               GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    "/historical-page",
+                                  );
+                                },
                                 child: Container(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(30),

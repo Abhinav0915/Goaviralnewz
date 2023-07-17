@@ -10,6 +10,7 @@ import 'package:goaviralnews/features/navigation/screens/Clubs/ClubsPage.dart';
 import 'package:goaviralnews/features/navigation/screens/Food/RestaurantDetailsPage.dart';
 import 'package:goaviralnews/features/navigation/screens/Food/RestaurantPage.dart';
 import 'package:goaviralnews/features/navigation/screens/GoaTour/GoaTourPage.dart';
+import 'package:goaviralnews/features/navigation/screens/Historical/historicalPage.dart';
 import 'package:goaviralnews/features/navigation/screens/Stay/HotelOverviewPage.dart';
 import 'package:goaviralnews/features/navigation/screens/dashboard.dart';
 import 'package:goaviralnews/features/navigation/screens/slider.dart';
@@ -107,24 +108,30 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
         settings: routeSettings,
         builder: (_) => const RestaurantPage(),
       );
-      case RestaurantDetailsPage.routName:
+    case RestaurantDetailsPage.routName:
       return MaterialPageRoute(
         settings: routeSettings,
         builder: (_) => const RestaurantDetailsPage(),
       );
     //Goa Tour Page Routes
-     case GoaTourPage.routName:
+    case GoaTourPage.routName:
       return MaterialPageRoute(
         settings: routeSettings,
         builder: (_) => const GoaTourPage(),
       );
     //Adventure Pages
-      case AdventurePage.routName:
+    case AdventurePage.routName:
       return MaterialPageRoute(
         settings: routeSettings,
         builder: (_) => const AdventurePage(),
       );
-    
+    //Historical Page
+    case HistoricalPage.routName:
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => const HistoricalPage(),
+      );
+
     default:
       return MaterialPageRoute(
         settings: routeSettings,
