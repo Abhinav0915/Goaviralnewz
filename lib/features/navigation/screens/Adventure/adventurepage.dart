@@ -450,7 +450,7 @@ class _AdventurePageState extends State<AdventurePage> {
               ),
             ),
             Container(
-              padding: const EdgeInsets.all(25),
+              padding: const EdgeInsets.all(15),
               child: Row(
                 children: [
                   Column(
