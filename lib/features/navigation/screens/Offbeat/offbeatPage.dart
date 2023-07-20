@@ -24,7 +24,7 @@ class _OffbeatPageState extends State<OffbeatPage> {
           children: [
             Container(
               padding: const EdgeInsets.only(top: 30),
-              height: 500,
+              height: 332,
               width: double.infinity,
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
@@ -88,7 +88,7 @@ class _OffbeatPageState extends State<OffbeatPage> {
                             ),
                           ),
                           SizedBox(
-                            height: height * 0.25,
+                            height: height * 0.15,
                           ),
                           Text(
                             'Enjoy the  vibe with these Off Beat places',

@@ -24,7 +24,7 @@ class _HistoricalPageState extends State<HistoricalPage> {
           children: [
             Container(
               padding: const EdgeInsets.only(top: 30),
-              height: 500,
+              height: 332,
               width: double.infinity,
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(

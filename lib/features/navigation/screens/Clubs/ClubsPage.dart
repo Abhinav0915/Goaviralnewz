@@ -743,48 +743,47 @@ class _ClubsPageState extends State<ClubsPage> {
                             child: Container(
                               padding: const EdgeInsets.only(top: 5, right: 5),
                               decoration: const BoxDecoration(
-                                color: Colors.blue,
                                 shape: BoxShape.circle,
                               ),
                               child: Container(
                                   width: 40,
-                                  padding: const EdgeInsets.only(left: 8),
+                                  padding: const EdgeInsets.only(
+                                      left: 8, top: 1, bottom: 1),
                                   decoration: BoxDecoration(
                                       color: Colors.white,
                                       borderRadius: BorderRadius.circular(3)),
                                   child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     children: [
                                       const Icon(
                                         CupertinoIcons.circle_fill,
                                         color: Colors.black,
-                                        size: 2,
+                                        size: 4,
                                       ),
-                                      SizedBox(width: width * 0.01),
+                                      SizedBox(
+                                        width: width * 0.01,
+                                      ),
                                       const Text(
-                                        "Live",
+                                        "LIVE",
                                         style: TextStyle(
-                                            fontSize: 10,
+                                            fontSize: 8,
                                             fontWeight: FontWeight.bold),
                                       ),
                                     ],
                                   )),
                             ),
                           ),
-                          Positioned(
-                            bottom: 0,
-                            right: 0,
+                          Transform.translate(
+                            offset: Offset(68, 128),
                             child: Container(
-                              padding: const EdgeInsets.all(2),
-                              decoration: const BoxDecoration(
-                                color: Colors.blue,
-                                shape: BoxShape.circle,
-                              ),
-                              child: const Icon(
-                                Icons.check,
-                                color: Colors.white,
-                                size: 16,
-                              ),
-                            ),
+                                padding: const EdgeInsets.all(2),
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Image.asset(
+                                  "assets/images/blueTick.png",
+                                )),
                           ),
                           Positioned(
                             bottom: 0,
@@ -1133,20 +1132,27 @@ class _ClubsPageState extends State<ClubsPage> {
                           //     ),
                           //   ),
                           // ),
-                          Positioned(
-                            bottom: 0,
-                            left: 0,
+                          Transform.translate(
+                            offset: Offset(68, 128),
                             child: Container(
-                              padding: const EdgeInsets.all(8),
-                              child: const Text(
-                                '#jungleparty',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold,
+                                padding: const EdgeInsets.all(2),
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
                                 ),
-                              ),
-                            ),
+                                child: Image.asset(
+                                  "assets/images/blueTick.png",
+                                )),
+                          ),
+                          Transform.translate(
+                            offset: Offset(68, 128),
+                            child: Container(
+                                padding: const EdgeInsets.all(2),
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Image.asset(
+                                  "assets/images/blueTick.png",
+                                )),
                           ),
                         ],
                       ),
@@ -1478,6 +1484,17 @@ class _ClubsPageState extends State<ClubsPage> {
                           //     ),
                           //   ),
                           // ),
+                          Transform.translate(
+                            offset: Offset(68, 128),
+                            child: Container(
+                                padding: const EdgeInsets.all(2),
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Image.asset(
+                                  "assets/images/blueTick.png",
+                                )),
+                          ),
                           Positioned(
                             bottom: 0,
                             left: 0,
