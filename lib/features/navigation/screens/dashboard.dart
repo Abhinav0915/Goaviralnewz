@@ -243,7 +243,7 @@ class _DashboardPageState extends State<DashboardPage> {
                   ],
                 ),
                 SizedBox(
-                  height: height * 0.025,
+                  height: height * 0.02,
                 ),
                 SingleChildScrollView(
                   padding: const EdgeInsets.all(1),
@@ -291,12 +291,12 @@ class _DashboardPageState extends State<DashboardPage> {
                   ),
                 ),
                 SizedBox(
-                  height: height * 0.025,
+                  height: height * 0.015,
                 ),
                 Container(
                   padding: const EdgeInsets.only(left: 5),
                   child: Container(
-                    height: 50,
+                    height: 48,
                     padding: const EdgeInsets.fromLTRB(15, 5, 10, 3),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
@@ -359,6 +359,8 @@ class _DashboardPageState extends State<DashboardPage> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Container(
+                                height: 77,
+                                width: 72,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(30),
                                   color: Colors.grey.shade200,
@@ -425,6 +427,8 @@ class _DashboardPageState extends State<DashboardPage> {
                                   );
                                 },
                                 child: Container(
+                                  height: 77,
+                                  width: 72,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(30),
                                     color: Colors.grey.shade200,
@@ -479,6 +483,8 @@ class _DashboardPageState extends State<DashboardPage> {
                                   );
                                 },
                                 child: Container(
+                                  height: 77,
+                                  width: 72,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(30),
                                     color: Colors.grey.shade200,
@@ -533,6 +539,8 @@ class _DashboardPageState extends State<DashboardPage> {
                                   );
                                 },
                                 child: Container(
+                                  height: 77,
+                                  width: 72,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(30),
                                     color: Colors.grey.shade200,
@@ -587,6 +595,8 @@ class _DashboardPageState extends State<DashboardPage> {
                                   );
                                 },
                                 child: Container(
+                                  height: 77,
+                                  width: 72,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(30),
                                     color: Colors.grey.shade200,
@@ -636,6 +646,8 @@ class _DashboardPageState extends State<DashboardPage> {
                               GestureDetector(
                                 onTap: () {},
                                 child: Container(
+                                  height: 77,
+                                  width: 72,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(30),
                                     color: Colors.grey.shade200,
@@ -690,6 +702,8 @@ class _DashboardPageState extends State<DashboardPage> {
                                   );
                                 },
                                 child: Container(
+                                  height: 77,
+                                  width: 72,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(30),
                                     color: Colors.grey.shade200,
@@ -744,6 +758,8 @@ class _DashboardPageState extends State<DashboardPage> {
                                   );
                                 },
                                 child: Container(
+                                  height: 77,
+                                  width: 72,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(30),
                                     color: Colors.grey.shade200,
@@ -798,6 +814,8 @@ class _DashboardPageState extends State<DashboardPage> {
                                   );
                                 },
                                 child: Container(
+                                  height: 77,
+                                  width: 72,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(30),
                                     color: Colors.grey.shade200,
@@ -845,7 +863,7 @@ class _DashboardPageState extends State<DashboardPage> {
                   ),
                 ),
                 SizedBox(
-                  height: height * 0.025,
+                  height: height * 0.02,
                 ),
                 Container(
                   height: 75,
@@ -948,7 +966,7 @@ class _DashboardPageState extends State<DashboardPage> {
                   ),
                 ),
                 SizedBox(
-                  height: height * 0.035,
+                  height: height * 0.02,
                 ),
                 Row(
                   children: [
@@ -959,7 +977,7 @@ class _DashboardPageState extends State<DashboardPage> {
                   ],
                 ),
                 SizedBox(
-                  height: height * 0.015,
+                  height: height * 0.01,
                 ),
                 SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
@@ -968,304 +986,298 @@ class _DashboardPageState extends State<DashboardPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                          height: 220,
-                          width: 180,
-                          padding: EdgeInsets.symmetric(
-                            horizontal: width * 0.05,
-                            vertical: height * 0.025,
-                          ),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.3),
-                                spreadRadius: 2,
-                                blurRadius: 5,
-                                offset: const Offset(0, 3),
-                              ),
-                            ],
-                            image: const DecorationImage(
-                              image: AssetImage("assets/images/liveevents.png"),
-                              fit: BoxFit.cover,
+                        height: 159,
+                        width: 165,
+                        padding: EdgeInsets.symmetric(
+                          horizontal: width * 0.05,
+                          vertical: height * 0.015,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.3),
+                              spreadRadius: 2,
+                              blurRadius: 5,
+                              offset: const Offset(0, 3),
                             ),
-                            color: const Color(0xFF6CD3FF),
+                          ],
+                          image: const DecorationImage(
+                            image: AssetImage("assets/images/liveevents.png"),
+                            fit: BoxFit.cover,
                           ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Text("Parties",
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                      )),
-                                ],
-                              ),
-                              SizedBox(
-                                height: height * 0.005,
-                              ),
-                              Row(
-                                children: [
-                                  Text("Live \nEvents",
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                      )),
-                                ],
-                              ),
-                              SizedBox(
-                                height: height * 0.005,
-                              ),
-                              const Row(
-                                children: [
-                                  Text("#trending",
-                                      style: TextStyle(
-                                        fontFamily: 'ComicSans',
-                                        fontSize: 12,
-                                        color: Colors.white,
-                                      )),
-                                ],
-                              ),
-                              SizedBox(
-                                height: height * 0.01,
-                              ),
-                              Row(
-                                children: [
-                                  Container(
-                                    height: 35,
-                                    width: 100,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        padding: const EdgeInsets.only(
-                                            left: 10, right: 10),
-                                        backgroundColor: Colors.white,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                      ),
-                                      onPressed: () {},
-                                      child: Text(
-                                        "Visit Place",
-                                        style: GoogleFonts.poppins(
-                                          color: Colors.blue,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                          color: const Color(0xFF6CD3FF),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Text("Parties",
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    )),
+                              ],
+                            ),
+                            SizedBox(
+                              height: height * 0.006,
+                            ),
+                            Row(
+                              children: [
+                                Text("Live \nEvents",
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 25,
+                                      letterSpacing: 2,
+                                      height: 1,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    )),
+                              ],
+                            ),
+                            const Row(
+                              children: [
+                                Text("#trending",
+                                    style: TextStyle(
+                                      fontFamily: 'ComicSans',
+                                      fontSize: 12,
+                                      color: Colors.white,
+                                    )),
+                              ],
+                            ),
+                            SizedBox(
+                              height: height * 0.01,
+                            ),
+                            Row(
+                              children: [
+                                Container(
+                                  height: 30,
+                                  width: 100,
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      padding: const EdgeInsets.only(
+                                          left: 10, right: 10),
+                                      backgroundColor: Colors.white,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10),
                                       ),
                                     ),
-                                  )
-                                ],
-                              ),
-                            ],
-                          )),
+                                    onPressed: () {},
+                                    child: Text(
+                                      "Visit Place",
+                                      style: GoogleFonts.poppins(
+                                        color: Color(0xFF167CC0),
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
                       SizedBox(
                         width: width * 0.04,
                       ),
                       Container(
-                          height: 220,
-                          width: 180,
-                          padding: EdgeInsets.symmetric(
-                            horizontal: width * 0.05,
-                            vertical: height * 0.025,
-                          ),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.3),
-                                spreadRadius: 2,
-                                blurRadius: 5,
-                                offset: const Offset(0, 3),
-                              ),
-                            ],
-                            image: const DecorationImage(
-                              image: AssetImage("assets/images/sunrise.png"),
-                              fit: BoxFit.cover,
+                        height: 159,
+                        width: 165,
+                        padding: EdgeInsets.symmetric(
+                          horizontal: width * 0.05,
+                          vertical: height * 0.015,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.3),
+                              spreadRadius: 2,
+                              blurRadius: 5,
+                              offset: const Offset(0, 3),
                             ),
-                            color: const Color(0xFF6CD3FF),
+                          ],
+                          image: const DecorationImage(
+                            image: AssetImage("assets/images/sunrise.png"),
+                            fit: BoxFit.cover,
                           ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Text("SUNRISE",
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                      )),
-                                ],
-                              ),
-                              SizedBox(
-                                height: height * 0.005,
-                              ),
-                              Row(
-                                children: [
-                                  Text("Best \nChoice",
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                      )),
-                                ],
-                              ),
-                              SizedBox(
-                                height: height * 0.005,
-                              ),
-                              const Row(
-                                children: [
-                                  Text("#morningmood",
-                                      style: TextStyle(
-                                        fontFamily: 'ComicSans',
-                                        fontSize: 12,
-                                        color: Colors.white,
-                                      )),
-                                ],
-                              ),
-                              SizedBox(
-                                height: height * 0.01,
-                              ),
-                              Row(
-                                children: [
-                                  Container(
-                                    height: 35,
-                                    width: 100,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        padding: const EdgeInsets.only(
-                                            left: 10, right: 10),
-                                        backgroundColor: Colors.white,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                      ),
-                                      onPressed: () {},
-                                      child: Text(
-                                        "Visit Place",
-                                        style: GoogleFonts.poppins(
-                                          color: Colors.blue,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                          color: const Color(0xFF6CD3FF),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Text("Sunrise",
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    )),
+                              ],
+                            ),
+                            SizedBox(
+                              height: height * 0.006,
+                            ),
+                            Row(
+                              children: [
+                                Text("Best\nChoice",
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 25,
+                                      letterSpacing: 2,
+                                      height: 1,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    )),
+                              ],
+                            ),
+                            const Row(
+                              children: [
+                                Text("#morningmood",
+                                    style: TextStyle(
+                                      fontFamily: 'ComicSans',
+                                      fontSize: 12,
+                                      color: Colors.white,
+                                    )),
+                              ],
+                            ),
+                            SizedBox(
+                              height: height * 0.01,
+                            ),
+                            Row(
+                              children: [
+                                Container(
+                                  height: 30,
+                                  width: 100,
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      padding: const EdgeInsets.only(
+                                          left: 10, right: 10),
+                                      backgroundColor: Colors.white,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10),
                                       ),
                                     ),
-                                  )
-                                ],
-                              ),
-                            ],
-                          )),
+                                    onPressed: () {},
+                                    child: Text(
+                                      "Visit Place",
+                                      style: GoogleFonts.poppins(
+                                        color: Color(0xFF167CC0),
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
                       SizedBox(
                         width: width * 0.04,
                       ),
                       Container(
-                          height: 220,
-                          width: 180,
-                          padding: EdgeInsets.symmetric(
-                            horizontal: width * 0.05,
-                            vertical: height * 0.025,
-                          ),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.3),
-                                spreadRadius: 2,
-                                blurRadius: 5,
-                                offset: const Offset(0, 3),
-                              ),
-                            ],
-                            image: const DecorationImage(
-                              image: AssetImage("assets/images/evening.png"),
-                              fit: BoxFit.cover,
+                        height: 159,
+                        width: 165,
+                        padding: EdgeInsets.symmetric(
+                          horizontal: width * 0.05,
+                          vertical: height * 0.015,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.3),
+                              spreadRadius: 2,
+                              blurRadius: 5,
+                              offset: const Offset(0, 3),
                             ),
-                            color: const Color(0xFF6CD3FF),
+                          ],
+                          image: const DecorationImage(
+                            image: AssetImage("assets/images/evening.png"),
+                            fit: BoxFit.cover,
                           ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Text("EVENING",
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                      )),
-                                ],
-                              ),
-                              SizedBox(
-                                height: height * 0.005,
-                              ),
-                              Row(
-                                children: [
-                                  Text("Best \nChoice",
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                      )),
-                                ],
-                              ),
-                              SizedBox(
-                                height: height * 0.005,
-                              ),
-                              const Row(
-                                children: [
-                                  Text("#walkingtime",
-                                      style: TextStyle(
-                                        fontFamily: 'ComicSans',
-                                        fontSize: 12,
-                                        color: Colors.white,
-                                      )),
-                                ],
-                              ),
-                              SizedBox(
-                                height: height * 0.01,
-                              ),
-                              Row(
-                                children: [
-                                  Container(
-                                    height: 35,
-                                    width: 100,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        padding: const EdgeInsets.only(
-                                            left: 10, right: 10),
-                                        backgroundColor: Colors.white,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                      ),
-                                      onPressed: () {},
-                                      child: Text(
-                                        "Visit Place",
-                                        style: GoogleFonts.poppins(
-                                          color: Colors.blue,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                          color: const Color(0xFF6CD3FF),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Text("Evening",
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    )),
+                              ],
+                            ),
+                            SizedBox(
+                              height: height * 0.006,
+                            ),
+                            Row(
+                              children: [
+                                Text("Best \nChoice",
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 25,
+                                      letterSpacing: 2,
+                                      height: 1,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    )),
+                              ],
+                            ),
+                            const Row(
+                              children: [
+                                Text("#walkingtime",
+                                    style: TextStyle(
+                                      fontFamily: 'ComicSans',
+                                      fontSize: 12,
+                                      color: Colors.white,
+                                    )),
+                              ],
+                            ),
+                            SizedBox(
+                              height: height * 0.01,
+                            ),
+                            Row(
+                              children: [
+                                Container(
+                                  height: 30,
+                                  width: 100,
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      padding: const EdgeInsets.only(
+                                          left: 10, right: 10),
+                                      backgroundColor: Colors.white,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10),
                                       ),
                                     ),
-                                  )
-                                ],
-                              ),
-                            ],
-                          )),
-                      SizedBox(
-                        width: width * 0.05,
+                                    onPressed: () {},
+                                    child: Text(
+                                      "Visit Place",
+                                      style: GoogleFonts.poppins(
+                                        color: Color(0xFF167CC0),
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
                 ),
                 SizedBox(
-                  height: height * 0.015,
+                  height: height * 0.01,
                 ),
                 Align(
                   alignment: Alignment.center,
