@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -21,6 +23,76 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   String selectedAvatar = "assets/icons/addstory.png";
   int _currentIndex = 0;
+  final List<Map<String, dynamic>> items = [
+    {
+      'title': 'Goa Tour',
+      'image': 'assets/images/2.png',
+      'route': '/goatour-page',
+    },
+    {
+      'title': 'Clubs',
+      'image': 'assets/images/6.png',
+      'route': '/club-page',
+    },
+    {
+      'title': 'Stay',
+      'image': 'assets/images/3.png',
+      'route': '/hotels-page',
+    },
+    {
+      'title': 'Food',
+      'image': 'assets/images/5.png',
+      'route': '/restaurant-page',
+    },
+    {
+      'title': 'Offbeat',
+      'image': 'assets/images/4.png',
+      'route': '/offbeat-page',
+    },
+    {
+      'title': 'Events',
+      'image': 'assets/images/7.png',
+      'route': '/offbeat-page',
+    },
+    {
+      'title': 'Historical',
+      'image': 'assets/images/9.png',
+      'route': '/historical-page',
+    },
+    {
+      'title': 'Adventure',
+      'image': 'assets/images/8.png',
+      'route': '/adventure-page',
+    },
+    {
+      'title': 'Market',
+      'image': 'assets/images/markett.png',
+      'route': '/market-page',
+    },
+  ];
+  // PageController _pageController = PageController(initialPage: 0);
+  // Timer? _timer;
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _startAutoSlide();
+  // }
+
+  // void _startAutoSlide() {
+  //   _timer = Timer.periodic(Duration(seconds: 3), (Timer timer) {
+  //     if (_currentIndex < 5) {
+  //       _currentIndex++;
+  //     } else {
+  //       _currentIndex = 0;
+  //     }
+  //     _pageController.animateToPage(
+  //       _currentIndex,
+  //       duration: Duration(milliseconds: 300),
+  //       curve: Curves.easeInOut,
+  //     );
+  //   });
+  // }
 
 // Default avatar path
 
@@ -30,7 +102,7 @@ class _DashboardPageState extends State<DashboardPage> {
     double width = SizeConfig.screenW!;
     double height = SizeConfig.screenH!;
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: Colors.black, // Set your desired color for the status bar
+      statusBarColor: Colors.grey, // Set your desired color for the status bar
     ));
 
     return WillPopScope(
@@ -123,7 +195,7 @@ class _DashboardPageState extends State<DashboardPage> {
         body: SafeArea(
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
-            padding: const EdgeInsets.fromLTRB(15, 15, 10, 0),
+            padding: const EdgeInsets.fromLTRB(15, 10, 10, 0),
             child: Column(
               children: [
                 Row(
@@ -346,519 +418,59 @@ class _DashboardPageState extends State<DashboardPage> {
                   ),
                 ),
                 SizedBox(
-                  height: height * 0.025,
+                  height: height * 0.02,
                 ),
                 SingleChildScrollView(
                   padding: const EdgeInsets.only(left: 5),
                   scrollDirection: Axis.horizontal,
-                  child: Wrap(
+                  child: Row(
                     children: [
-                      Row(
-                        children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Container(
+                      for (int index = 0; index < items.length; index++)
+                        Column(
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(
+                                    context, items[index]['route']);
+                              },
+                              child: Container(
                                 height: 77,
                                 width: 72,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(30),
                                   color: Colors.grey.shade200,
-                                  // boxShadow: [
-                                  //   BoxShadow(
-                                  //     color: Colors.grey.withOpacity(0.3),
-                                  //     spreadRadius: 1,
-                                  //     blurRadius: 2,
-                                  //     offset: const Offset(0, 1),
-                                  //   ),
-                                  // ],
+                                  // Add boxShadow if needed
                                 ),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(30),
                                   child: PhysicalModel(
-                                    borderRadius: BorderRadius.circular(30),
                                     color: Colors.transparent,
                                     shadowColor: Colors.black,
+                                    borderRadius: BorderRadius.circular(5),
                                     child: Container(
                                       width: 80,
                                       height: 80,
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          Navigator.pushNamed(
-                                            context,
-                                            "/goatour-page",
-                                          );
-                                        },
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(30),
-                                          child: Image.asset(
-                                            "assets/images/2.png",
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
+                                      child: Image.asset(
+                                        items[index]['image'],
+                                        fit: BoxFit.cover,
                                       ),
                                     ),
                                   ),
                                 ),
                               ),
-                              const SizedBox(
-                                height: 7,
+                            ),
+                            const SizedBox(height: 7),
+                            Text(
+                              items[index]['title'],
+                              style: GoogleFonts.poppins(
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
                               ),
-                              Text(
-                                "Goa Tour",
-                                style: GoogleFonts.poppins(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            width: width * 0.05,
-                          ),
-                          Column(
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                    context,
-                                    "/club-page",
-                                  );
-                                },
-                                child: Container(
-                                  height: 77,
-                                  width: 72,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(30),
-                                    color: Colors.grey.shade200,
-                                    // boxShadow: [
-                                    //   BoxShadow(
-                                    //     color: Colors.grey.withOpacity(0.3),
-                                    //     spreadRadius: 2,
-                                    //     blurRadius: 5,
-                                    //     offset: const Offset(0, 8),
-                                    //   ),
-                                    // ],
-                                  ),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(25),
-                                    child: PhysicalModel(
-                                      color: Colors.grey.shade200,
-                                      elevation: 10,
-                                      shadowColor: Colors.black,
-                                      borderRadius: BorderRadius.circular(5),
-                                      child: Container(
-                                        width: 80,
-                                        height: 80,
-                                        child: Image.asset(
-                                          "assets/images/6.png",
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 7,
-                              ),
-                              Text("Clubs",
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                            ],
-                          ),
-                          SizedBox(
-                            width: width * 0.05,
-                          ),
-                          Column(
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                    context,
-                                    "/hotels-page",
-                                  );
-                                },
-                                child: Container(
-                                  height: 77,
-                                  width: 72,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(30),
-                                    color: Colors.grey.shade200,
-                                    // boxShadow: [
-                                    //   BoxShadow(
-                                    //     color: Colors.grey.withOpacity(0.3),
-                                    //     spreadRadius: 2,
-                                    //     blurRadius: 5,
-                                    //     offset: const Offset(0, 8),
-                                    //   ),
-                                    // ],
-                                  ),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(30),
-                                    child: PhysicalModel(
-                                      color: Colors.grey.shade200,
-                                      elevation: 10,
-                                      shadowColor: Colors.black,
-                                      borderRadius: BorderRadius.circular(5),
-                                      child: Container(
-                                        width: 80,
-                                        height: 80,
-                                        child: Image.asset(
-                                          "assets/images/3.png",
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 7,
-                              ),
-                              Text("Stay",
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                            ],
-                          ),
-                          SizedBox(
-                            width: width * 0.05,
-                          ),
-                          Column(
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                    context,
-                                    "/restaurant-page",
-                                  );
-                                },
-                                child: Container(
-                                  height: 77,
-                                  width: 72,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(30),
-                                    color: Colors.grey.shade200,
-                                    // boxShadow: [
-                                    //   BoxShadow(
-                                    //     color: Colors.grey.withOpacity(0.3),
-                                    //     spreadRadius: 2,
-                                    //     blurRadius: 5,
-                                    //     offset: const Offset(0, 8),
-                                    //   ),
-                                    // ],
-                                  ),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(30),
-                                    child: PhysicalModel(
-                                      color: Colors.grey.shade200,
-                                      elevation: 10,
-                                      shadowColor: Colors.black,
-                                      borderRadius: BorderRadius.circular(5),
-                                      child: Container(
-                                        width: 80,
-                                        height: 80,
-                                        child: Image.asset(
-                                          "assets/images/5.png",
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 7,
-                              ),
-                              Text("Food",
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                            ],
-                          ),
-                          SizedBox(
-                            width: width * 0.05,
-                          ),
-                          Column(
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                    context,
-                                    "/offbeat-page",
-                                  );
-                                },
-                                child: Container(
-                                  height: 77,
-                                  width: 72,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(30),
-                                    color: Colors.grey.shade200,
-                                    // boxShadow: [
-                                    //   BoxShadow(
-                                    //     color: Colors.grey.withOpacity(0.3),
-                                    //     spreadRadius: 2,
-                                    //     blurRadius: 5,
-                                    //     offset: const Offset(0, 8),
-                                    //   ),
-                                    // ],
-                                  ),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(25),
-                                    child: PhysicalModel(
-                                      color: Colors.grey.shade200,
-                                      elevation: 10,
-                                      shadowColor: Colors.black,
-                                      borderRadius: BorderRadius.circular(5),
-                                      child: Container(
-                                        width: 80,
-                                        height: 80,
-                                        child: Image.asset(
-                                          "assets/images/4.png",
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 7,
-                              ),
-                              Text("Offbeat",
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                            ],
-                          ),
-                          SizedBox(
-                            width: width * 0.05,
-                          ),
-                          Column(
-                            children: [
-                              GestureDetector(
-                                onTap: () {},
-                                child: Container(
-                                  height: 77,
-                                  width: 72,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(30),
-                                    color: Colors.grey.shade200,
-                                    // boxShadow: [
-                                    //   BoxShadow(
-                                    //     color: Colors.grey.withOpacity(0.3),
-                                    //     spreadRadius: 2,
-                                    //     blurRadius: 5,
-                                    //     offset: const Offset(0, 8),
-                                    //   ),
-                                    // ],
-                                  ),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(25),
-                                    child: PhysicalModel(
-                                      color: Colors.grey.shade200,
-                                      elevation: 10,
-                                      shadowColor: Colors.black,
-                                      borderRadius: BorderRadius.circular(5),
-                                      child: Container(
-                                        width: 80,
-                                        height: 80,
-                                        child: Image.asset(
-                                          "assets/images/7.png",
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 7,
-                              ),
-                              Text("Events",
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                            ],
-                          ),
-                          SizedBox(
-                            width: width * 0.05,
-                          ),
-                          Column(
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                    context,
-                                    "/historical-page",
-                                  );
-                                },
-                                child: Container(
-                                  height: 77,
-                                  width: 72,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(30),
-                                    color: Colors.grey.shade200,
-                                    // boxShadow: [
-                                    //   BoxShadow(
-                                    //     color: Colors.grey.withOpacity(0.3),
-                                    //     spreadRadius: 2,
-                                    //     blurRadius: 5,
-                                    //     offset: const Offset(0, 8),
-                                    //   ),
-                                    // ],
-                                  ),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(25),
-                                    child: PhysicalModel(
-                                      color: Colors.grey.shade200,
-                                      elevation: 10,
-                                      shadowColor: Colors.black,
-                                      borderRadius: BorderRadius.circular(5),
-                                      child: Container(
-                                        width: 80,
-                                        height: 80,
-                                        child: Image.asset(
-                                          "assets/images/9.png",
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 7,
-                              ),
-                              Text("Historical",
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                            ],
-                          ),
-                          SizedBox(
-                            width: width * 0.05,
-                          ),
-                          Column(
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                    context,
-                                    "/adventure-page",
-                                  );
-                                },
-                                child: Container(
-                                  height: 77,
-                                  width: 72,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(30),
-                                    color: Colors.grey.shade200,
-                                    // boxShadow: [
-                                    //   BoxShadow(
-                                    //     color: Colors.grey.withOpacity(0.3),
-                                    //     spreadRadius: 2,
-                                    //     blurRadius: 5,
-                                    //     offset: const Offset(0, 8),
-                                    //   ),
-                                    // ],
-                                  ),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(25),
-                                    child: PhysicalModel(
-                                      color: Colors.grey.shade200,
-                                      elevation: 10,
-                                      shadowColor: Colors.black,
-                                      borderRadius: BorderRadius.circular(5),
-                                      child: Container(
-                                        width: 80,
-                                        height: 80,
-                                        child: Image.asset(
-                                          "assets/images/8.png",
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 7,
-                              ),
-                              Text("Adventure",
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                            ],
-                          ),
-                          SizedBox(
-                            width: width * 0.05,
-                          ),
-                          Column(
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                    context,
-                                    "/market-page",
-                                  );
-                                },
-                                child: Container(
-                                  height: 77,
-                                  width: 72,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(30),
-                                    color: Colors.grey.shade200,
-                                    // boxShadow: [
-                                    //   BoxShadow(
-                                    //     color: Colors.grey.withOpacity(0.3),
-                                    //     spreadRadius: 2,
-                                    //     blurRadius: 5,
-                                    //     offset: const Offset(0, 8),
-                                    //   ),
-                                    // ],
-                                  ),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(25),
-                                    child: PhysicalModel(
-                                      color: Colors.grey.shade200,
-                                      elevation: 10,
-                                      shadowColor: Colors.black,
-                                      borderRadius: BorderRadius.circular(5),
-                                      child: Container(
-                                        width: 80,
-                                        height: 80,
-                                        child: Image.asset(
-                                          "assets/images/markett.png",
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 7,
-                              ),
-                              Text("Market",
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                            ],
-                          ),
-                        ],
-                      )
+                            ),
+                            if (index < items.length - 1)
+                              SizedBox(width: width * 0.23),
+                          ],
+                        ),
                     ],
                   ),
                 ),
