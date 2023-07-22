@@ -7,7 +7,9 @@ import 'package:goaviralnews/features/navigation/screens/slider.dart';
 import 'package:goaviralnews/globalVariables.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../size_config.dart';
+import 'package:scroll_loop_auto_scroll/scroll_loop_auto_scroll.dart';
 import '../widgets/trending.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -21,6 +23,7 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   String selectedAvatar = "assets/icons/addstory.png";
   int _currentIndex = 0;
+
   final List<Map<String, dynamic>> items = [
     {
       'title': 'Goa Tour',
@@ -68,32 +71,27 @@ class _DashboardPageState extends State<DashboardPage> {
       'route': '/market-page',
     },
   ];
-  // PageController _pageController = PageController(initialPage: 0);
-  // Timer? _timer;
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _startAutoSlide();
-  // }
-
-  // void _startAutoSlide() {
-  //   _timer = Timer.periodic(Duration(seconds: 3), (Timer timer) {
-  //     if (_currentIndex < 5) {
-  //       _currentIndex++;
-  //     } else {
-  //       _currentIndex = 0;
-  //     }
-  //     _pageController.animateToPage(
-  //       _currentIndex,
-  //       duration: Duration(milliseconds: 300),
-  //       curve: Curves.easeInOut,
-  //     );
-  //   });
-  // }
-
-// Default avatar path
-
+  List<Map<String, dynamic>> itemList = [
+    {
+      'imagePath': "assets/images/liveevents.png",
+      'title': 'Parties',
+      'description': 'Live Events',
+      'hashtag': '#trending',
+    },
+    {
+      'imagePath': "assets/images/sunrise.png",
+      'title': 'Sunrise',
+      'description': 'Best Choice',
+      'hashtag': '#morningmood',
+    },
+    {
+      'imagePath': "assets/images/evening.png",
+      'title': 'Evening',
+      'description': 'Best Choice',
+      'hashtag': '#walkingtime',
+    },
+  ];
+  final PageController _pageController = PageController();
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -418,58 +416,64 @@ class _DashboardPageState extends State<DashboardPage> {
                 SizedBox(
                   height: height * 0.02,
                 ),
-                SingleChildScrollView(
-                  padding: const EdgeInsets.only(left: 5),
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      for (int index = 0; index < items.length; index++)
-                        Column(
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(
-                                    context, items[index]['route']);
-                              },
-                              child: Container(
-                                height: 77,
-                                width: 72,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(30),
-                                  color: Colors.grey.shade200,
-                                  // Add boxShadow if needed
-                                ),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(30),
-                                  child: PhysicalModel(
-                                    color: Colors.transparent,
-                                    shadowColor: Colors.black,
-                                    borderRadius: BorderRadius.circular(5),
-                                    child: Container(
-                                      width: 80,
-                                      height: 80,
-                                      child: Image.asset(
-                                        items[index]['image'],
-                                        fit: BoxFit.cover,
+                ScrollLoopAutoScroll(
+                  scrollDirection: Axis.horizontal, //required
+                  delay: Duration(seconds: 0),
+                  delayAfterScrollInput: Duration(seconds: 1),
+
+                  child: SingleChildScrollView(
+                    padding: const EdgeInsets.only(left: 5),
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        for (int index = 0; index < items.length; index++)
+                          Column(
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                      context, items[index]['route']);
+                                },
+                                child: Container(
+                                  height: 77,
+                                  width: 72,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30),
+                                    color: Colors.grey.shade200,
+                                    // Add boxShadow if needed
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(30),
+                                    child: PhysicalModel(
+                                      color: Colors.transparent,
+                                      shadowColor: Colors.black,
+                                      borderRadius: BorderRadius.circular(5),
+                                      child: Container(
+                                        width: 80,
+                                        height: 80,
+                                        child: Image.asset(
+                                          items[index]['image'],
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
-                            const SizedBox(height: 7),
-                            Text(
-                              items[index]['title'],
-                              style: GoogleFonts.poppins(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
+                              const SizedBox(height: 7),
+                              Text(
+                                items[index]['title'],
+                                style: GoogleFonts.poppins(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
-                            if (index < items.length - 1)
-                              SizedBox(width: width * 0.23),
-                          ],
-                        ),
-                    ],
+                              if (index < items.length - 1)
+                                SizedBox(width: width * 0.23),
+                            ],
+                          ),
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -595,295 +599,145 @@ class _DashboardPageState extends State<DashboardPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        height: 159,
-                        width: 165,
-                        padding: EdgeInsets.symmetric(
-                          horizontal: width * 0.05,
-                          vertical: height * 0.015,
-                        ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.3),
-                              spreadRadius: 2,
-                              blurRadius: 5,
-                              offset: const Offset(0, 3),
+                      for (var item in itemList)
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal:
+                                  5), // Add space horizontally between containers
+                          child: Container(
+                            height: 159,
+                            width: 350,
+                            padding: EdgeInsets.symmetric(
+                              horizontal: width * 0.05,
+                              vertical: height * 0.015,
                             ),
-                          ],
-                          image: const DecorationImage(
-                            image: AssetImage("assets/images/liveevents.png"),
-                            fit: BoxFit.cover,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.3),
+                                  spreadRadius: 2,
+                                  blurRadius: 5,
+                                  offset: const Offset(0, 3),
+                                ),
+                              ],
+                              image: DecorationImage(
+                                image: AssetImage(item['imagePath']),
+                                fit: BoxFit.cover,
+                              ),
+                              color: const Color(0xFF6CD3FF),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(item['title'],
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                        )),
+                                  ],
+                                ),
+                                SizedBox(height: height * 0.015),
+                                item['description'].contains('\n')
+                                    ? Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                              item['description']
+                                                  .split('\n')[0],
+                                              style: GoogleFonts.poppins(
+                                                fontSize: 25,
+                                                letterSpacing: 2,
+                                                height: 1,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.white,
+                                              )),
+                                          Text(
+                                            item['description'].split('\n')[1],
+                                            style: GoogleFonts.poppins(
+                                              fontSize: 25,
+                                              letterSpacing: 2,
+                                              height: 1,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ],
+                                      )
+                                    : Text(item['description'],
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 25,
+                                          letterSpacing: 2,
+                                          height: 1,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                        )),
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                      height: height * 0.01,
+                                    ),
+                                    Text(item['hashtag'],
+                                        style: TextStyle(
+                                          fontFamily: 'ComicSans',
+                                          fontSize: 12,
+                                          color: Colors.white,
+                                        )),
+                                  ],
+                                ),
+                                SizedBox(height: height * 0.02),
+                                Row(
+                                  children: [
+                                    Container(
+                                      height: 30,
+                                      width: 100,
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          padding: const EdgeInsets.only(
+                                              left: 10, right: 10),
+                                          backgroundColor: Colors.white,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                        ),
+                                        onPressed: () {},
+                                        child: Text(
+                                          "Visit Place",
+                                          style: GoogleFonts.poppins(
+                                            color: Color(0xFF167CC0),
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
-                          color: const Color(0xFF6CD3FF),
                         ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Text("Parties",
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    )),
-                              ],
-                            ),
-                            SizedBox(
-                              height: height * 0.006,
-                            ),
-                            Row(
-                              children: [
-                                Text("Live \nEvents",
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 25,
-                                      letterSpacing: 2,
-                                      height: 1,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    )),
-                              ],
-                            ),
-                            const Row(
-                              children: [
-                                Text("#trending",
-                                    style: TextStyle(
-                                      fontFamily: 'ComicSans',
-                                      fontSize: 12,
-                                      color: Colors.white,
-                                    )),
-                              ],
-                            ),
-                            SizedBox(
-                              height: height * 0.01,
-                            ),
-                            Row(
-                              children: [
-                                Container(
-                                  height: 30,
-                                  width: 100,
-                                  child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      padding: const EdgeInsets.only(
-                                          left: 10, right: 10),
-                                      backgroundColor: Colors.white,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                    ),
-                                    onPressed: () {},
-                                    child: Text(
-                                      "Visit Place",
-                                      style: GoogleFonts.poppins(
-                                        color: Color(0xFF167CC0),
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        width: width * 0.04,
-                      ),
-                      Container(
-                        height: 159,
-                        width: 165,
-                        padding: EdgeInsets.symmetric(
-                          horizontal: width * 0.05,
-                          vertical: height * 0.015,
-                        ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.3),
-                              spreadRadius: 2,
-                              blurRadius: 5,
-                              offset: const Offset(0, 3),
-                            ),
-                          ],
-                          image: const DecorationImage(
-                            image: AssetImage("assets/images/sunrise.png"),
-                            fit: BoxFit.cover,
-                          ),
-                          color: const Color(0xFF6CD3FF),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Text("Sunrise",
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    )),
-                              ],
-                            ),
-                            SizedBox(
-                              height: height * 0.006,
-                            ),
-                            Row(
-                              children: [
-                                Text("Best\nChoice",
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 25,
-                                      letterSpacing: 2,
-                                      height: 1,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    )),
-                              ],
-                            ),
-                            const Row(
-                              children: [
-                                Text("#morningmood",
-                                    style: TextStyle(
-                                      fontFamily: 'ComicSans',
-                                      fontSize: 12,
-                                      color: Colors.white,
-                                    )),
-                              ],
-                            ),
-                            SizedBox(
-                              height: height * 0.01,
-                            ),
-                            Row(
-                              children: [
-                                Container(
-                                  height: 30,
-                                  width: 100,
-                                  child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      padding: const EdgeInsets.only(
-                                          left: 10, right: 10),
-                                      backgroundColor: Colors.white,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                    ),
-                                    onPressed: () {},
-                                    child: Text(
-                                      "Visit Place",
-                                      style: GoogleFonts.poppins(
-                                        color: Color(0xFF167CC0),
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        width: width * 0.04,
-                      ),
-                      Container(
-                        height: 159,
-                        width: 165,
-                        padding: EdgeInsets.symmetric(
-                          horizontal: width * 0.05,
-                          vertical: height * 0.015,
-                        ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.3),
-                              spreadRadius: 2,
-                              blurRadius: 5,
-                              offset: const Offset(0, 3),
-                            ),
-                          ],
-                          image: const DecorationImage(
-                            image: AssetImage("assets/images/evening.png"),
-                            fit: BoxFit.cover,
-                          ),
-                          color: const Color(0xFF6CD3FF),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Text("Evening",
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    )),
-                              ],
-                            ),
-                            SizedBox(
-                              height: height * 0.006,
-                            ),
-                            Row(
-                              children: [
-                                Text("Best \nChoice",
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 25,
-                                      letterSpacing: 2,
-                                      height: 1,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    )),
-                              ],
-                            ),
-                            const Row(
-                              children: [
-                                Text("#walkingtime",
-                                    style: TextStyle(
-                                      fontFamily: 'ComicSans',
-                                      fontSize: 12,
-                                      color: Colors.white,
-                                    )),
-                              ],
-                            ),
-                            SizedBox(
-                              height: height * 0.01,
-                            ),
-                            Row(
-                              children: [
-                                Container(
-                                  height: 30,
-                                  width: 100,
-                                  child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      padding: const EdgeInsets.only(
-                                          left: 10, right: 10),
-                                      backgroundColor: Colors.white,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                    ),
-                                    onPressed: () {},
-                                    child: Text(
-                                      "Visit Place",
-                                      style: GoogleFonts.poppins(
-                                        color: Color(0xFF167CC0),
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
                     ],
+                  ),
+                ),
+                SizedBox(
+                  height: height * 0.02,
+                ),
+                SmoothPageIndicator(
+                  // Smooth page indicator widget
+                  controller: _pageController,
+                  count: itemList.length,
+                  effect: WormEffect(
+                    // Choose the effect you like, there are various effects to choose from
+                    dotWidth: 10,
+                    dotHeight: 10,
+                    activeDotColor: Colors.blue,
+                    dotColor: Colors.grey,
                   ),
                 ),
                 SizedBox(
