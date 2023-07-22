@@ -91,7 +91,7 @@ class _DashboardPageState extends State<DashboardPage> {
       'hashtag': '#walkingtime',
     },
   ];
-  final PageController _pageController = PageController();
+  PageController _pageController = PageController(viewportFraction: 0.1);
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -596,8 +596,9 @@ class _DashboardPageState extends State<DashboardPage> {
                 SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  controller: _pageController,
+                  child: Wrap(
+                    spacing: width * 0.001,
                     children: [
                       for (var item in itemList)
                         Padding(
@@ -615,7 +616,7 @@ class _DashboardPageState extends State<DashboardPage> {
                               borderRadius: BorderRadius.circular(12),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.grey.withOpacity(0.3),
+                                  color: Colors.white,
                                   spreadRadius: 2,
                                   blurRadius: 5,
                                   offset: const Offset(0, 3),
@@ -732,8 +733,7 @@ class _DashboardPageState extends State<DashboardPage> {
                   // Smooth page indicator widget
                   controller: _pageController,
                   count: itemList.length,
-                  effect: WormEffect(
-                    // Choose the effect you like, there are various effects to choose from
+                  effect: JumpingDotEffect(
                     dotWidth: 10,
                     dotHeight: 10,
                     activeDotColor: Colors.blue,
