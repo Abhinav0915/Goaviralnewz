@@ -6,6 +6,7 @@ import 'package:goaviralnews/features/auth/screens/otpverification_register.dart
 import 'package:goaviralnews/features/auth/screens/profile.dart';
 import 'package:goaviralnews/features/auth/screens/register.dart';
 import 'package:goaviralnews/features/navigation/screens/Adventure/adventurepage.dart';
+import 'package:goaviralnews/features/navigation/screens/Beaches/beachesPage.dart';
 import 'package:goaviralnews/features/navigation/screens/Clubs/ClubsPage.dart';
 import 'package:goaviralnews/features/navigation/screens/Food/RestaurantDetailsPage.dart';
 import 'package:goaviralnews/features/navigation/screens/Food/RestaurantPage.dart';
@@ -145,6 +146,12 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
       return MaterialPageRoute(
         settings: routeSettings,
         builder: (_) => const MarketPage(),
+      );
+    //Beaches Page
+    case BeachesPage.routName:
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => const BeachesPage(),
       );
 
     default:

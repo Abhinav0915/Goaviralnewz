@@ -70,6 +70,11 @@ class _DashboardPageState extends State<DashboardPage> {
       'image': 'assets/images/markett.png',
       'route': '/market-page',
     },
+    {
+      'title': 'Beaches',
+      'image': 'assets/images/beaches.png',
+      'route': '/beaches-page',
+    },
   ];
   List<Map<String, dynamic>> itemList = [
     {
@@ -91,7 +96,11 @@ class _DashboardPageState extends State<DashboardPage> {
       'hashtag': '#walkingtime',
     },
   ];
-  PageController _pageController = PageController(viewportFraction: 0.1);
+  PageController _pageController = PageController(
+    initialPage: 0,
+    viewportFraction: 0.1,
+  );
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -418,7 +427,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 ),
                 ScrollLoopAutoScroll(
                   scrollDirection: Axis.horizontal, //required
-                  delay: Duration(seconds: 0),
+                  delay: Duration(minutes: 70),
                   delayAfterScrollInput: Duration(seconds: 1),
 
                   child: SingleChildScrollView(
@@ -733,7 +742,7 @@ class _DashboardPageState extends State<DashboardPage> {
                   // Smooth page indicator widget
                   controller: _pageController,
                   count: itemList.length,
-                  effect: JumpingDotEffect(
+                  effect: WormEffect(
                     dotWidth: 10,
                     dotHeight: 10,
                     activeDotColor: Colors.blue,
