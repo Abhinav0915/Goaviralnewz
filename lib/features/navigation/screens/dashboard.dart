@@ -75,6 +75,11 @@ class _DashboardPageState extends State<DashboardPage> {
       'image': 'assets/images/beaches.png',
       'route': '/beaches-page',
     },
+    {
+      'title': 'Treking',
+      'image': 'assets/images/trekIcon.jpg',
+      'route': '/treking-page',
+    },
   ];
   List<Map<String, dynamic>> itemList = [
     {
