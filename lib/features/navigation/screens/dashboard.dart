@@ -108,7 +108,7 @@ class _DashboardPageState extends State<DashboardPage> {
   ];
   PageController _pageController = PageController(
     initialPage: 0,
-    viewportFraction: 0.1,
+    viewportFraction: 1,
   );
 
   @override
@@ -437,7 +437,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 ),
                 ScrollLoopAutoScroll(
                   scrollDirection: Axis.horizontal, //required
-                  delay: Duration(minutes: 70),
+                  delay: Duration(seconds: 0),
                   delayAfterScrollInput: Duration(seconds: 1),
 
                   child: SingleChildScrollView(
