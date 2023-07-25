@@ -16,6 +16,7 @@ import 'package:goaviralnews/features/navigation/screens/Market/marketPage.dart'
 import 'package:goaviralnews/features/navigation/screens/Offbeat/offbeatPage.dart';
 import 'package:goaviralnews/features/navigation/screens/Stay/HotelOverviewPage.dart';
 import 'package:goaviralnews/features/navigation/screens/Treking/trekingPage.dart';
+import 'package:goaviralnews/features/navigation/screens/WaterFall/waterfall.dart';
 import 'package:goaviralnews/features/navigation/screens/dashboard.dart';
 import 'package:goaviralnews/features/navigation/screens/slider.dart';
 import 'package:goaviralnews/features/navigation/screens/Stay/HotelsPage.dart';
@@ -162,6 +163,11 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
         builder: (_) => const TrekingPage(),
       );
 
+    case WaterfallPage.routName:
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => const WaterfallPage(),
+      );
     default:
       return MaterialPageRoute(
         settings: routeSettings,
