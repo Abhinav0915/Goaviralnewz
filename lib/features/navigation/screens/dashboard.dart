@@ -23,7 +23,6 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   String selectedAvatar = "assets/icons/addstory.png";
   int _currentIndex = 0;
-
   final List<Map<String, dynamic>> items = [
     {
       'title': 'Goa Tour',
